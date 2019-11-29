@@ -12,6 +12,9 @@ npm install --save cb-modal-lib
 ## Advantages
 Create modals wherever you want without having to maintain state variables.
 
+## Motivation
+The modal libraries in existance requires users to maintain state variables for the creation of each modal, which can become painful while mainting a large codebase that involves multiple modals. This library eliminates the above problem and lets yours create modals wihout having to create and maintain state variables.
+
 ## Usage
 
 ```jsx
