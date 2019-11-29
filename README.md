@@ -14,16 +14,20 @@ npm install --save cb-modal-lib
 
 ```jsx
 import React, { Component } from 'react'
+import {open} from 'cb-modal-lib'
+import "cb-modal-lib/dist/modalStyle.css";
 
-import MyComponent from 'cb-modal-lib'
-
-class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
+openModal = () => {
+  open({
+    header: () => { // component or string to render header },
+    body: () => { // component or string to render body }
+    footer: () => { // component or string to render footer }
+  })
 }
+
+const App = () => (
+  <button onClick={openModal}>Open Modal</button>
+)
 ```
 
 ## License
