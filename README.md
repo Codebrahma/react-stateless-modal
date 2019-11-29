@@ -9,6 +9,8 @@
 ```bash
 npm install --save cb-modal-lib
 ```
+## Advantages
+Create modals wherever you want without having to maintain state variables.
 
 ## Usage
 
