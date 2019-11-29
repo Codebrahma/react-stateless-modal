@@ -35,6 +35,7 @@ class Example extends Component {
 
 The open method will mount the container for you.
 
+### Nested modal support
 The library additionally gives you the flexibilty of mounting a modal container over an already existing modal. The example below describes the same
 
 ```jsx
