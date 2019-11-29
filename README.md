@@ -20,8 +20,9 @@ import "cb-modal-lib/dist/modalStyle.css";
 openModal = () => {
   open({
     header: () => { // component or string to render header },
-    body: () => { // component or string to render body }
-    footer: () => { // component or string to render footer }
+    body: () => { // component or string to render body },
+    footer: () => { // component or string to render footer },
+    styles: () => { // style object to add custom styles to the container}
   })
 }
 
