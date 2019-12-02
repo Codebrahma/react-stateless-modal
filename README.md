@@ -96,6 +96,10 @@ export default class App extends Component {
 }
 ```
 
+## Live Preview
+
+https://codesandbox.io/s/zen-bogdan-whms4?fontsize=14&hidenavigation=1&theme=dark
+
 ## License
 
 MIT © [Sigkill32](https://github.com/Sigkill32)
