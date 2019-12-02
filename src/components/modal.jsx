@@ -22,7 +22,7 @@ class Modal extends Component {
 
   handleClick = e => {
     const { className, id } = e.target;
-    if (className === "modal display-block") {
+    if (className === "modal") {
       // this.removElement(id);
       // console.log(id);
     }
@@ -31,7 +31,7 @@ class Modal extends Component {
   render() {
     const { head, body, footer, styles, id } = this.props;
     return (
-      <div className="modal display-block" id={id}>
+      <div className="modal" id={id}>
         <section className="modal-main" style={styles}>
           <img src={close} alt="close button" onClick={this.handleClose} />
           {typeof head === "string" ? <h2>{head}</h2> : head}
