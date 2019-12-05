@@ -10,6 +10,10 @@
 npm install --save cb-modal-lib
 ```
 
+## Live Preview
+
+https://codesandbox.io/s/zen-bogdan-whms4?fontsize=14&hidenavigation=1&theme=dark
+
 ## Advantages
 
 Create modals wherever you want without having to maintain state variables.
@@ -95,10 +99,6 @@ export default class App extends Component {
   }
 }
 ```
-
-## Live Preview
-
-https://codesandbox.io/s/zen-bogdan-whms4?fontsize=14&hidenavigation=1&theme=dark
 
 ## License
 
