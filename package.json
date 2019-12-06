@@ -1,6 +1,6 @@
 {
   "name": "cb-modal-lib",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A modal library that does not require state maintance",
   "author": "Sigkill32",
   "license": "MIT",
