@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { open } from "cb-modal-lib";
 import "cb-modal-lib/dist/modalStyle.css";
+import "./test.css";
 
 export default class App extends Component {
   openModal = () => {
@@ -23,7 +24,9 @@ export default class App extends Component {
     open({
       head: () => "Inner Heading",
       body: () => <p>Inner Body</p>,
-      footer: () => <p>Inner Footer</p>
+      footer: () => <p>Inner Footer</p>,
+      styles: () => ({ width: " 30%" }),
+      clsName: () => "test"
     });
   };
 

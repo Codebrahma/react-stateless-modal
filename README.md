@@ -43,7 +43,8 @@ class Example extends Component {
       header: () => { // component or string to render header },
       body: () => { // component or string to render body },
       footer: () => { // component or string to render footer },
-      styles: () => { // style object to add custom styles to the container}
+      styles: () => { // style object to add custom styles to the container},
+      clsName: () => { // A custom classname for the modal container}
     })
   }
   render() {
