@@ -45,7 +45,7 @@ class Modal extends Component {
     const { closed } = this.state;
     return (
       <div
-        className={closed ? `modal modal-close` : `modal ${clsName}`}
+        className={closed ? `modal modal-close` : `modal`}
         id={id}
         onKeyDown={this.handleDown}
         tabIndex="0"
