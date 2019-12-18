@@ -48,7 +48,7 @@ class Example extends Component {
         /* A custom classname for the modal container */
       ),
       closeOnEscape: () => (
-        /* Setting true closes the modal on pressing escape key setting flase does the opposite */
+        /* Setting true closes the modal on pressing escape key setting false does the opposite */
       )
     });
   };
