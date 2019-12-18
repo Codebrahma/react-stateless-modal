@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { openModal } from "cb-modal-lib";
-import "cb-modal-lib/dist/modalStyle.css";
+import { openModal } from "cb-react-modal";
+import "cb-react-modal/dist/modalStyle.css";
 import "./test.css";
 
 export default class App extends Component {

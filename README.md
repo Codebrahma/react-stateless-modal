@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save cb-modal-lib
+npm install --save cb-react-modal
 ```
 
 ## Live Preview
@@ -26,12 +26,12 @@ The modal libraries in existance such as `react-responsive-modal` requires users
 
 ```jsx
 import React, { Component } from "react";
-import { open } from "cb-modal-lib";
-import "cb-modal-lib/dist/modalStyle.css";
+import { openModal } from "cb-react-modal";
+import "cb-react-modal/dist/modalStyle.css";
 
 class Example extends Component {
   openModal = () => {
-    open({
+    openModal({
       header: () => (
         /* component or string to render header */
       ),
@@ -66,12 +66,12 @@ The library additionally gives you the flexibilty of mounting a modal container 
 
 ```jsx
 import React, { Component } from "react";
-import { open } from "cb-modal-lib";
-import "cb-modal-lib/dist/modalStyle.css";
+import { open } from "cb-react-modal";
+import "cb-react-modal/dist/modalStyle.css";
 
 export default class App extends Component {
   openModal = () => {
-    open({
+    openModal({
       head: () => <h2>Random Heading</h2>,
       body: () => (
         <p>
@@ -87,7 +87,7 @@ export default class App extends Component {
   };
 
   openInnerModal = () => {
-    open({
+    openModal({
       head: () => "Inner Heading",
       body: () => <p>Inner Body</p>,
       footer: () => <p>Inner Footer</p>
@@ -95,12 +95,7 @@ export default class App extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <h1>Modal demo</h1>
-        <button onClick={this.openModal}>Show</button>
-      </div>
-    );
+    return <button onClick={this.openModal}>Show</button>;
   }
 }
 ```
