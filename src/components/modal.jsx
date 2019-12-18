@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import close from "../images/cross.svg";
+import closeIcon from "../images/cross.svg";
 
 class Modal extends Component {
   state = {
@@ -39,17 +39,27 @@ class Modal extends Component {
   };
 
   handleKeyDown = e => {
+    const { closeOnEscape } = this.props;
+    if (closeOnEscape === false) return;
     const ESCAPE_KEY_CODE = 27;
     if (e.keyCode === ESCAPE_KEY_CODE) this.handleClose();
   };
 
   handleMouseDown = e => {
-    const { className, id } = e.target;
+    const { className } = e.target;
     if (className === "modal") this.handleClose();
   };
 
   render() {
-    const { head, body, footer, styles, id, clsName } = this.props;
+    const {
+      head,
+      body,
+      footer,
+      styles,
+      id,
+      clsName,
+      closeOnEscape
+    } = this.props;
     const { closed } = this.state;
     return (
       <div
@@ -58,17 +68,17 @@ class Modal extends Component {
         onKeyDown={this.handleDown}
         tabIndex="0"
       >
-        <div className="close-modal" onClick={this.handleClose}>
-          <img src={close} alt="close button" />
+        {closeOnEscape ? <div className="close-modal" onClick={this.handleClose}>
+          <img src={closeIcon} alt="close button" />
           <p>(Esc)</p>
-        </div>
+        </div> : null}
         <section
           className={
             closed ? "modal-main modal-main-close" : `modal-main ${clsName}`
           }
           style={styles}
         >
-          <img src={close} alt="close button" onClick={this.handleClose} />
+          <img src={closeIcon} alt="close button" onClick={this.handleClose} />
           {typeof head === "string" ? <h2>{head}</h2> : head}
           <div className="body">
             {typeof body === "string" ? <p>{body}</p> : body}
