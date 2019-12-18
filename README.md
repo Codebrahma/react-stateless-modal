@@ -1,4 +1,4 @@
-# cb-modal-lib
+# cb-react-modal
 
 > A modal library that does not require state maintance
 
