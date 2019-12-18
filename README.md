@@ -46,6 +46,9 @@ class Example extends Component {
       ),
       clsName: () => (
         /* A custom classname for the modal container */
+      ),
+      closeOnEscape: () => (
+        /* Setting true closes the modal on pressing escape key setting flase does the opposite */
       )
     });
   };
