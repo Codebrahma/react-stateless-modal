@@ -12,7 +12,7 @@ npm install --save cb-modal-lib
 
 ## Live Preview
 
-https://codesandbox.io/s/zen-bogdan-whms4?fontsize=14&hidenavigation=1&theme=dark
+https://practical-mahavira-784c71.netlify.com/
 
 ## Advantages
 
