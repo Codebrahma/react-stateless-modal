@@ -11,18 +11,25 @@ class Modal extends Component {
     setTimeout(() => {
       this.removElement(this.props.id);
     }, 250);
+    this.removeListener();
+  };
+
+  addListener = () => {
+    document.addEventListener("keydown", this.handleKeyDown, false);
+    document.addEventListener("mousedown", this.handleMouseDown, false);
+  };
+
+  removeListener = () => {
     document.removeEventListener("keydown", this.handleKeyDown, false);
     document.removeEventListener("mousedown", this.handleMouseDown, false);
   };
 
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyDown, false);
-    document.addEventListener("mousedown", this.handleMouseDown, false);
+    this.addListener();
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyDown, false);
-    document.removeEventListener("mousedown", this.handleMouseDown, false);
+    this.removeListener();
   }
 
   removElement = id => {
@@ -32,7 +39,8 @@ class Modal extends Component {
   };
 
   handleKeyDown = e => {
-    if (e.keyCode === 27) this.handleClose();
+    const ESCAPE_KEY_CODE = 27;
+    if (e.keyCode === ESCAPE_KEY_CODE) this.handleClose();
   };
 
   handleMouseDown = e => {
