@@ -9,7 +9,7 @@ class Modal extends Component {
   handleClose = () => {
     this.setState({ closed: true });
     setTimeout(() => {
-      this.removElement(this.props.id);
+      this.removeElement(this.props.id);
     }, 250);
     this.removeListener();
   };
@@ -32,7 +32,7 @@ class Modal extends Component {
     this.removeListener();
   }
 
-  removElement = id => {
+  removeElement = id => {
     this.setState({ closed: false });
     const element = document.querySelector(`#modal${id}`);
     element.parentNode.removeChild(element);
