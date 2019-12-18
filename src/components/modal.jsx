@@ -63,7 +63,7 @@ class Modal extends Component {
     const { closed } = this.state;
     return (
       <div
-        className={closed ? `modal modal-close` : `modal`}
+        className={`modal${closed ? " modal-close" : ""}`}
         id={id}
         onKeyDown={this.handleDown}
         tabIndex="0"
@@ -75,9 +75,9 @@ class Modal extends Component {
           </div>
         ) : null}
         <section
-          className={
-            closed ? "modal-main modal-main-close" : `modal-main ${clsName}`
-          }
+          className={`modal-main${
+            closed ? " modal-main-close" : ` ${clsName}`
+          }`}
           style={styles}
         >
           <img src={closeIcon} alt="close" onClick={this.handleClose} />
