@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { open } from "cb-modal-lib";
+import { openModal } from "cb-modal-lib";
 import "cb-modal-lib/dist/modalStyle.css";
 import "./test.css";
 
 export default class App extends Component {
   openModal = () => {
-    open({
+    openModal({
       head: () => <h2>Random Heading</h2>,
       body: () => (
         <p>
@@ -21,7 +21,7 @@ export default class App extends Component {
   };
 
   openInnerModal = () => {
-    open({
+    openModal({
       head: () => "Inner Heading",
       body: () => <p>Inner Body</p>,
       footer: () => <p>Inner Footer</p>,

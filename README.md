@@ -25,25 +25,34 @@ The modal libraries in existance such as `react-responsive-modal` requires users
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-import {open} from 'cb-modal-lib'
+import React, { Component } from "react";
+import { open } from "cb-modal-lib";
 import "cb-modal-lib/dist/modalStyle.css";
 
 class Example extends Component {
   openModal = () => {
     open({
-      header: () => { // component or string to render header },
-      body: () => { // component or string to render body },
-      footer: () => { // component or string to render footer },
-      styles: () => { // style object to add custom styles to the container},
-      clsName: () => { // A custom classname for the modal container}
-    })
-  }
+      header: () => (
+        /* component or string to render header */
+      ),
+      body: () => (
+        /* component or string to render body */
+      ),
+      footer: () => (
+        /* component or string to render footer */
+      ),
+      styles: () => (
+        /* style object to add custom styles to the container*/
+      ),
+      clsName: () => (
+        /* A custom classname for the modal container */
+      )
+    });
+  };
   render() {
-    return <button onClick={this.openModal}>Open Modal</button>
+    return <button onClick={this.openModal}>Open Modal</button>;
   }
 }
-
 ```
 
 The open method will mount the container for you.

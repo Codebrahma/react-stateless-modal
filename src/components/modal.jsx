@@ -68,17 +68,19 @@ class Modal extends Component {
         onKeyDown={this.handleDown}
         tabIndex="0"
       >
-        {closeOnEscape ? <div className="close-modal" onClick={this.handleClose}>
-          <img src={closeIcon} alt="close button" />
-          <p>(Esc)</p>
-        </div> : null}
+        {closeOnEscape ? (
+          <div className="close-modal" onClick={this.handleClose}>
+            <img src={closeIcon} alt="close" />
+            <p>(Esc)</p>
+          </div>
+        ) : null}
         <section
           className={
             closed ? "modal-main modal-main-close" : `modal-main ${clsName}`
           }
           style={styles}
         >
-          <img src={closeIcon} alt="close button" onClick={this.handleClose} />
+          <img src={closeIcon} alt="close" onClick={this.handleClose} />
           {typeof head === "string" ? <h2>{head}</h2> : head}
           <div className="body">
             {typeof body === "string" ? <p>{body}</p> : body}

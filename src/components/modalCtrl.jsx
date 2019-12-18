@@ -2,7 +2,7 @@ import Modal from "./modal.jsx";
 import ReactDOM from "react-dom";
 import React from "react";
 
-const open = contents => {
+const openModal = contents => {
   const { head, body, footer, styles, clsName, closeOnEscape } = contents;
   const containerDomNode = document.createElement("div");
   const rand = Math.floor(Math.random() * 100000 + 1);
@@ -22,4 +22,4 @@ const open = contents => {
   );
 };
 
-export { Modal, open };
+export { Modal, openModal };
