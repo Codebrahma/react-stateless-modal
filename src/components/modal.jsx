@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import closeIcon from "../images/cross.svg";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import closeIcon from '../images/cross.svg';
 
 class Modal extends Component {
   state = {
@@ -24,13 +24,13 @@ class Modal extends Component {
   };
 
   addListener = () => {
-    document.addEventListener("keydown", this.handleKeyDown, false);
-    document.addEventListener("mousedown", this.handleMouseDown, false);
+    document.addEventListener('keydown', this.handleKeyDown, false);
+    document.addEventListener('mousedown', this.handleMouseDown, false);
   };
 
   removeListener = () => {
-    document.removeEventListener("keydown", this.handleKeyDown, false);
-    document.removeEventListener("mousedown", this.handleMouseDown, false);
+    document.removeEventListener('keydown', this.handleKeyDown, false);
+    document.removeEventListener('mousedown', this.handleMouseDown, false);
   };
 
   removeElement = id => {
@@ -48,23 +48,15 @@ class Modal extends Component {
 
   handleMouseDown = e => {
     const { className } = e.target;
-    if (className === "modal") this.handleClose();
+    if (className === 'modal') this.handleClose();
   };
 
   render() {
-    const {
-      head,
-      body,
-      footer,
-      styles,
-      id,
-      clsName,
-      closeOnEscape
-    } = this.props;
+    const { head, body, footer, styles, id, clsName, closeOnEscape } = this.props;
     const { closed } = this.state;
     return (
       <div
-        className={`modal${closed ? " modal-close" : ""}`}
+        className={`modal${closed ? ' modal-close' : ''}`}
         id={id}
         onKeyDown={this.handleDown}
         tabIndex="0"
@@ -76,26 +68,20 @@ class Modal extends Component {
           </div>
         ) : null}
         <section
-          className={`modal-main${
-            closed ? " modal-main-close" : ` ${clsName}`
-          }`}
+          className={`modal-main${closed ? ' modal-main-close' : ` ${clsName}`}`}
           style={styles}
         >
           <img src={closeIcon} alt="close" onClick={this.handleClose} />
-          {typeof head === "string" ? <h2>{head}</h2> : head}
-          <div className="body">
-            {typeof body === "string" ? <p>{body}</p> : body}
-          </div>
-          <div className="footer">
-            {typeof footer === "string" ? <p>{footer}</p> : footer}
-          </div>
+          {typeof head === 'string' ? <h2>{head}</h2> : head}
+          <div className="body">{typeof body === 'string' ? <p>{body}</p> : body}</div>
+          <div className="footer">{typeof footer === 'string' ? <p>{footer}</p> : footer}</div>
         </section>
       </div>
     );
   }
 }
 
-Modal.prototype = {
+Component.prototype = {
   head: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
