@@ -14,6 +14,10 @@ npm install --save cb-react-modal
 
 https://practical-mahavira-784c71.netlify.com/
 
+## documentation
+
+https://hardcore-bardeen-53f8f1.netlify.com/
+
 ## Advantages
 
 Create modals wherever you want without having to maintain state variables.
@@ -65,9 +69,9 @@ The open method will mount the container for you.
 The library additionally gives you the flexibility of mounting a modal container over an already existing modal. The example below describes the same
 
 ```jsx
-import React, { Component } from "react";
-import { open } from "cb-react-modal";
-import "cb-react-modal/dist/modalStyle.css";
+import React, { Component } from 'react';
+import { open } from 'cb-react-modal';
+import 'cb-react-modal/dist/modalStyle.css';
 
 export default class App extends Component {
   openModal = () => {
@@ -75,20 +79,17 @@ export default class App extends Component {
       head: () => <h2>Random Heading</h2>,
       body: () => (
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-          hendrerit risus, sed porttitor quam.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non risus
+          hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor quam.
         </p>
       ),
-      footer: () => (
-        <button onClick={this.openInnerModal}>Open Inner Modal</button>
-      )
+      footer: () => <button onClick={this.openInnerModal}>Open Inner Modal</button>
     });
   };
 
   openInnerModal = () => {
     openModal({
-      head: () => "Inner Heading",
+      head: () => 'Inner Heading',
       body: () => <p>Inner Body</p>,
       footer: () => <p>Inner Footer</p>
     });
