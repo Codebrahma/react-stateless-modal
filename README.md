@@ -1,6 +1,6 @@
 # cb-react-modal
 
-> A modal library that does not require state maintance
+> A modal library that does not require state maintenance
 
 [![NPM](https://img.shields.io/npm/v/cb-modal-lib.svg)](https://www.npmjs.com/package/cb-modal-lib) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -20,7 +20,7 @@ Create modals wherever you want without having to maintain state variables.
 
 ## Motivation
 
-The modal libraries in existance such as `react-responsive-modal` requires users to maintain state variables for the creation of each modal, which can become painful while maintaining a large codebase that involves multiple modals. This library eliminates the above problem and lets users create modals wihout having to create and maintain state variables.
+The modal libraries in existence such as `react-responsive-modal` requires users to maintain state variables for the creation of each modal, which can become painful while maintaining a large codebase that involves multiple modals. This library eliminates the above problem and lets users create modals without having to create and maintain state variables.
 
 ## Usage
 
@@ -62,7 +62,7 @@ The open method will mount the container for you.
 
 ### Nested modal support
 
-The library additionally gives you the flexibilty of mounting a modal container over an already existing modal. The example below describes the same
+The library additionally gives you the flexibility of mounting a modal container over an already existing modal. The example below describes the same
 
 ```jsx
 import React, { Component } from "react";

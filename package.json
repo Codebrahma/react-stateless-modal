@@ -19,7 +19,8 @@
     "start": "rollup -c -w",
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -35,13 +36,17 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^5.1.4",
-    "eslint": "^5.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.8.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-react": "^6.0.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^3.1.0",
     "gh-pages": "^1.2.0",
     "react": "^16.4.1",
@@ -57,5 +62,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
 }

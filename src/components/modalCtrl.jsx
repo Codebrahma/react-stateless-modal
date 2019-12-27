@@ -1,6 +1,6 @@
-import Modal from "./modal.jsx";
 import ReactDOM from "react-dom";
 import React from "react";
+import Modal from "./modal.jsx";
 
 const openModal = contents => {
   const { head, body, footer, styles, clsName, closeOnEscape } = contents;

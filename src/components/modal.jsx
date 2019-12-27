@@ -1,10 +1,19 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import closeIcon from "../images/cross.svg";
 
 class Modal extends Component {
   state = {
     closed: false
   };
+
+  componentDidMount() {
+    this.addListener();
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
+  }
 
   handleClose = () => {
     this.setState({ closed: true });
@@ -23,14 +32,6 @@ class Modal extends Component {
     document.removeEventListener("keydown", this.handleKeyDown, false);
     document.removeEventListener("mousedown", this.handleMouseDown, false);
   };
-
-  componentDidMount() {
-    this.addListener();
-  }
-
-  componentWillUnmount() {
-    this.removeListener();
-  }
 
   removeElement = id => {
     this.setState({ closed: false });
@@ -93,5 +94,15 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.prototype = {
+  head: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  styles: PropTypes.object,
+  id: PropTypes.number,
+  clsName: PropTypes.string,
+  closeOnEscape: PropTypes.bool
+};
 
 export default Modal;
