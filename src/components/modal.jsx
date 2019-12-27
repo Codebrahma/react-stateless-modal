@@ -81,7 +81,7 @@ class Modal extends Component {
   }
 }
 
-Component.prototype = {
+Modal.prototypes = {
   head: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
