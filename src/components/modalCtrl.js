@@ -34,9 +34,9 @@ openModal.defaultProps = {
 };
 
 openModal.propTypes = {
-  head: propTypes.func,
-  body: propTypes.func,
-  footer: propTypes.func,
+  head: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
+  body: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
+  footer: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
   closeOnEscape: propTypes.string,
   styles: propTypes.shape({}),
   clsName: propTypes.shape({})
