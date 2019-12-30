@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import closeIcon from '../images/cross.svg';
 
 class Modal extends Component {
+
   state = {
     closed: false
   };

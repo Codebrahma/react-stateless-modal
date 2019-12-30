@@ -12,12 +12,12 @@ const openModal = contents => {
 
   ReactDOM.render(
     <Modal
-      head={head()}
-      body={body()}
-      footer={footer()}
-      closeOnEscape={closeOnEscape ? closeOnEscape() : true}
-      styles={styles ? styles() : null}
-      clsName={clsName ? clsName() : null}
+      head={typeof head === 'string' ? head : head()}
+      body={typeof body === 'string' ? body : body()}
+      footer={typeof footer === 'string' ? footer : footer()}
+      closeOnEscape={closeOnEscape}
+      styles={styles}
+      clsName={clsName}
       id={rand}
     />,
     containerDomNode
@@ -30,18 +30,16 @@ openModal.defaultProps = {
   footer: '',
   closeOnEscape: true,
   styles: null,
-  clsName: null,
-  id: null
+  clsName: null
 };
 
 openModal.propTypes = {
   head: propTypes.func,
   body: propTypes.func,
   footer: propTypes.func,
-  closeOnEscape: propTypes.func,
-  styles: propTypes.func,
-  clsName: propTypes.func,
-  id: propTypes.number
+  closeOnEscape: propTypes.string,
+  styles: propTypes.shape({}),
+  clsName: propTypes.shape({})
 };
 
 export { Modal, openModal };
