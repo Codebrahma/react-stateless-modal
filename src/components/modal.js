@@ -8,7 +8,8 @@ class Modal extends Component {
   };
 
   componentDidMount() {
-    this.addListener();
+    document.addEventListener('keydown', this.handleKeyDown, false);
+    document.addEventListener('mousedown', this.handleMouseDown, false);
   }
 
   componentWillUnmount() {
@@ -19,13 +20,9 @@ class Modal extends Component {
     this.setState({ closed: true });
     setTimeout(() => {
       this.removeElement(this.props.id);
+      F;
     }, 250);
     this.removeListener();
-  };
-
-  addListener = () => {
-    document.addEventListener('keydown', this.handleKeyDown, false);
-    document.addEventListener('mousedown', this.handleMouseDown, false);
   };
 
   removeListener = () => {
@@ -35,7 +32,7 @@ class Modal extends Component {
 
   removeElement = id => {
     this.setState({ closed: false });
-    const element = document.querySelector(`#modal${id}`);
+    const element = document.querySelector(`#app-modal-${id}`);
     element.parentNode.removeChild(element);
   };
 
@@ -52,7 +49,15 @@ class Modal extends Component {
   };
 
   render() {
-    const { head, body, footer, styles, id, clsName, closeOnEscape } = this.props;
+    const {
+      head,
+      body,
+      footer,
+      styles,
+      id,
+      clsName,
+      closeOnEscape
+    } = this.props;
     const { closed } = this.state;
     return (
       <div
@@ -68,13 +73,19 @@ class Modal extends Component {
           </div>
         ) : null}
         <section
-          className={`modal-main${closed ? ' modal-main-close' : ` ${clsName}`}`}
+          className={`modal-main${
+            closed ? ' modal-main-close' : ` ${clsName}`
+          }`}
           style={styles}
         >
           <img src={closeIcon} alt="close" onClick={this.handleClose} />
           {typeof head === 'string' ? <h2>{head}</h2> : head}
-          <div className="body">{typeof body === 'string' ? <p>{body}</p> : body}</div>
-          <div className="footer">{typeof footer === 'string' ? <p>{footer}</p> : footer}</div>
+          <div className="body">
+            {typeof body === 'string' ? <p>{body}</p> : body}
+          </div>
+          <div className="footer">
+            {typeof footer === 'string' ? <p>{footer}</p> : footer}
+          </div>
         </section>
       </div>
     );

@@ -1,4 +1,3 @@
-import Modal from "./components/modal.jsx";
-import { openModal } from "./components/modalCtrl.jsx";
+import { openModal } from './components/modalCtrl';
 
-export { openModal, Modal };
+export default openModal;

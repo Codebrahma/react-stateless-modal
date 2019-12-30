@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { openModal } from "cb-react-modal";
-import "cb-react-modal/dist/modalStyle.css";
-import "./test.css";
+import React, { Component } from 'react';
+import openModal from 'cb-react-modal';
+import 'cb-react-modal/dist/modalStyle.css';
+import './test.css';
 
 export default class App extends Component {
   openModal = () => {
@@ -22,11 +22,11 @@ export default class App extends Component {
 
   openInnerModal = () => {
     openModal({
-      head: () => "Inner Heading",
+      head: () => 'Inner Heading',
       body: () => <p>Inner Body</p>,
       footer: () => <p>Inner Footer</p>,
-      styles: () => ({ width: " 30%" }),
-      clsName: () => "test"
+      styles: () => ({ width: ' 30%' }),
+      clsName: () => 'test'
     });
   };
 
