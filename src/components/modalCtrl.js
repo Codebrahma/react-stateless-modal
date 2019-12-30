@@ -4,7 +4,15 @@ import propTypes from 'prop-types';
 import Modal from './modal';
 
 const openModal = contents => {
-  const { head, body, footer, styles, clsName, closeOnEscape } = contents;
+  const {
+    head,
+    body,
+    footer,
+    styles,
+    classNames,
+    closeOnEscape,
+    closeIcon
+  } = contents;
   const containerDomNode = document.createElement('div');
   const rand = Math.floor(Math.random() * 100000 + 1);
   containerDomNode.setAttribute('id', `app-modal-${rand}`);
@@ -17,8 +25,9 @@ const openModal = contents => {
       footer={typeof footer === 'string' ? footer : footer()}
       closeOnEscape={closeOnEscape}
       styles={styles}
-      clsName={clsName}
+      classNames={classNames}
       id={rand}
+      closeIcon={closeIcon}
     />,
     containerDomNode
   );
@@ -30,7 +39,8 @@ openModal.defaultProps = {
   footer: '',
   closeOnEscape: true,
   styles: null,
-  clsName: null
+  classNames: null,
+  closeIcon: null
 };
 
 openModal.propTypes = {
@@ -39,7 +49,15 @@ openModal.propTypes = {
   footer: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
   closeOnEscape: propTypes.string,
   styles: propTypes.shape({}),
-  clsName: propTypes.shape({})
+  classNames: propTypes.shape({
+    overlay: propTypes.string,
+    modal: propTypes.string,
+    closeIcon: propTypes.string
+  }),
+  closeIcon: propTypes.shape({
+    src: propTypes.string,
+    alt: propTypes.string
+  })
 };
 
 export { Modal, openModal };

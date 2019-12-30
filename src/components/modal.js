@@ -57,7 +57,7 @@ class Modal extends Component {
       styles,
       id,
       clsName,
-      closeOnEscape
+      closeOnEscape,
     } = this.props;
     const { closed } = this.state;
     return (
@@ -69,6 +69,7 @@ class Modal extends Component {
       >
         {closeOnEscape ? (
           <div className="close-modal" onClick={this.handleClose}>
+            
             <img src={closeIcon} alt="close" />
             <p>(Esc)</p>
           </div>
@@ -79,7 +80,9 @@ class Modal extends Component {
           }`}
           style={styles}
         >
-          <img src={closeIcon} alt="close" onClick={this.handleClose} />
+          {this.props.closeIcon ? 
+            <img src={this.props.closeIcon.src} alt={this.props.closeIcon.alt}></img> : 
+              <img src={closeIcon} alt="close" onClick={this.handleClose} />}
           {typeof head === 'string' ? <h2>{head}</h2> : head}
           <div className="body">
             {typeof body === 'string' ? <p>{body}</p> : body}
@@ -94,9 +97,9 @@ class Modal extends Component {
 }
 
 Modal.prototypes = {
-  head: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  head: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   styles: PropTypes.object,
   id: PropTypes.number,
   clsName: PropTypes.string,
