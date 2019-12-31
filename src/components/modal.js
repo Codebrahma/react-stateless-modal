@@ -58,11 +58,12 @@ class Modal extends Component {
       id,
       clsName,
       closeOnEscape,
+      classNames
     } = this.props;
     const { closed } = this.state;
     return (
       <div
-        className={`modal${closed ? ' modal-close' : ''}`}
+        className={`modal${classNames.overlay ? ` ${classNames.overlay}`: ''}${closed ? ' modal-close' : ''}`}
         id={id}
         onKeyDown={this.handleDown}
         tabIndex="0"
@@ -75,14 +76,14 @@ class Modal extends Component {
           </div>
         ) : null}
         <section
-          className={`modal-main${
-            closed ? ' modal-main-close' : ` ${clsName}`
+          className={`modal-main${classNames.modal ? ` ${classNames.modal}` : ''}${
+            closed ? ' modal-main-close' : ''
           }`}
           style={styles}
         >
           {this.props.closeIcon ? 
-            <img src={this.props.closeIcon.src} alt={this.props.closeIcon.alt} onClick={this.handleClose}></img> : 
-              <img src={closeIcon} alt="close" onClick={this.handleClose} />}
+            <img src={this.props.closeIcon.src} alt={this.props.closeIcon.alt} onClick={this.handleClose} className={classNames.closeIcon}></img> : 
+              <img src={closeIcon} alt="close" onClick={this.handleClose} className={classNames.closeIcon}/>}
           {typeof head === 'string' ? <h2>{head}</h2> : head}
           <div className="body">
             {typeof body === 'string' ? <p>{body}</p> : body}
@@ -96,6 +97,16 @@ class Modal extends Component {
   }
 }
 
+Modal.defaultProps = {
+   head: '',
+  body: '',
+  footer: '',
+  closeOnEscape: true,
+  styles: null,
+  classNames: { overlay: '', modal: '', closeIcon: '' },
+  closeIcon: null
+}
+
 Modal.prototypes = {
   head: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
@@ -103,7 +114,7 @@ Modal.prototypes = {
   styles: PropTypes.object,
   id: PropTypes.number,
   clsName: PropTypes.string,
-  closeOnEscape: PropTypes.bool
+  closeOnEscape: PropTypes.bool,
 };
 
 export default Modal;

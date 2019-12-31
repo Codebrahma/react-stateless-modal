@@ -28,7 +28,8 @@ export default class App extends Component {
       footer: () => <p>Inner Footer</p>,
       styles: { width: ' 30%' },
       clsName: 'test',
-      closeIcon: { src: closeSrc, alt:'close' }
+      closeIcon: { src: closeSrc, alt:'close' },
+      classNames: {overlay: 'overlay', modal: 'mod', closeIcon: 'ico'}
     });
   };
 

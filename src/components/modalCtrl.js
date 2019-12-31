@@ -33,16 +33,6 @@ const openModal = contents => {
   );
 };
 
-openModal.defaultProps = {
-  head: '',
-  body: '',
-  footer: '',
-  closeOnEscape: true,
-  styles: null,
-  classNames: null,
-  closeIcon: null
-};
-
 openModal.propTypes = {
   head: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
   body: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
