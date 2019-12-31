@@ -46,7 +46,8 @@ class Modal extends Component {
 
   handleMouseDown = e => {
     const { className } = e.target;
-    if (className === 'modal') this.handleClose();
+    const { classNames } = this.props;
+    if (className === 'modal' || className === `modal ${classNames.overlay}`) this.handleClose();
   };
 
   render() {
