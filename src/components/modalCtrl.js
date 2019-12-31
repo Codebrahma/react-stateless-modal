@@ -12,15 +12,16 @@ const openModal = contents => {
     classNames,
     closeOnEscape,
     closeIcon,
-    containerId
+    containerId,
+    animation
   } = contents;
 
-  const containerDomNode = containerId
-    ? document.getElementById(containerId)
-    : document.createElement('div');
+  const containerDomNode = document.createElement('div');
   const rand = Math.floor(Math.random() * 100000 + 1);
   containerDomNode.setAttribute('id', `app-modal-${rand}`);
-  document.body.appendChild(containerDomNode);
+  if (containerId)
+    document.getElementById(containerId).appendChild(containerDomNode);
+  else document.body.appendChild(containerDomNode);
 
   ReactDOM.render(
     <Modal
@@ -32,15 +33,16 @@ const openModal = contents => {
       classNames={classNames}
       id={rand}
       closeIcon={closeIcon}
+      animation={animation}
     />,
     containerDomNode
   );
 };
 
 openModal.propTypes = {
-  head: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
-  body: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
-  footer: propTypes.oneOfType([propTypes.func, propTypes.string]).isRequired,
+  head: propTypes.oneOfType([propTypes.func, propTypes.string]),
+  body: propTypes.oneOfType([propTypes.func, propTypes.string]),
+  footer: propTypes.oneOfType([propTypes.func, propTypes.string]),
   closeOnEscape: propTypes.string,
   styles: propTypes.shape({}),
   classNames: propTypes.shape({
@@ -52,7 +54,11 @@ openModal.propTypes = {
     src: propTypes.object,
     alt: propTypes.string
   }),
-  containerId: propTypes.string
+  containerId: propTypes.string,
+  animation: propTypes.shape({
+    name: propTypes.string,
+    duration: propTypes.string
+  })
 };
 
 export { Modal, openModal };
