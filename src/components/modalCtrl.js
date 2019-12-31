@@ -11,9 +11,13 @@ const openModal = contents => {
     styles,
     classNames,
     closeOnEscape,
-    closeIcon
+    closeIcon,
+    containerId
   } = contents;
-  const containerDomNode = document.createElement('div');
+
+  const containerDomNode = containerId
+    ? document.getElementById(containerId)
+    : document.createElement('div');
   const rand = Math.floor(Math.random() * 100000 + 1);
   containerDomNode.setAttribute('id', `app-modal-${rand}`);
   document.body.appendChild(containerDomNode);
@@ -45,9 +49,10 @@ openModal.propTypes = {
     closeIcon: propTypes.string
   }),
   closeIcon: propTypes.shape({
-    src: propTypes.string,
+    src: propTypes.object,
     alt: propTypes.string
-  })
+  }),
+  containerId: propTypes.string
 };
 
 export { Modal, openModal };
