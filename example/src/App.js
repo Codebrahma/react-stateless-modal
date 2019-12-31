@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import openModal from 'cb-react-modal';
 import 'cb-react-modal/dist/modalStyle.css';
 import './test.css';
+import closeSrc from './twitter.svg'
 
 export default class App extends Component {
   openModal = () => {
@@ -26,7 +27,8 @@ export default class App extends Component {
       body: () => <p>Inner Body</p>,
       footer: () => <p>Inner Footer</p>,
       styles: { width: ' 30%' },
-      clsName: 'test'
+      clsName: 'test',
+      closeIcon: { src: closeSrc, alt:'close' }
     });
   };
 

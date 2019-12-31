@@ -81,7 +81,7 @@ class Modal extends Component {
           style={styles}
         >
           {this.props.closeIcon ? 
-            <img src={this.props.closeIcon.src} alt={this.props.closeIcon.alt}></img> : 
+            <img src={this.props.closeIcon.src} alt={this.props.closeIcon.alt} onClick={this.handleClose}></img> : 
               <img src={closeIcon} alt="close" onClick={this.handleClose} />}
           {typeof head === 'string' ? <h2>{head}</h2> : head}
           <div className="body">
