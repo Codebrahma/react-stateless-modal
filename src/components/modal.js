@@ -69,13 +69,6 @@ class Modal extends Component {
         onKeyDown={this.handleDown}
         tabIndex="0"
       >
-        {closeOnEscape ? (
-          <div className="close-modal" onClick={this.handleClose}>
-            
-            <img src={closeIcon} alt="close" />
-            <p>(Esc)</p>
-          </div>
-        ) : null}
         <section
           className={`modal-main${classNames.modal ? ` ${classNames.modal}` : ''}${
             closed ? ' modal-main-close' : ''
