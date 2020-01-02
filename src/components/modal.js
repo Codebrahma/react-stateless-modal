@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import closeIcon from '../images/cross.svg';
+import styles from '../styles/modalStyle.css';
 
 class Modal extends Component {
-
-  state = {
-    closed: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      closed: false
+    };
+  }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown, false);
     document.addEventListener('mousedown', this.handleMouseDown, false);
+    console.log(styles);
   }
 
   componentWillUnmount() {
@@ -45,37 +49,51 @@ class Modal extends Component {
   };
 
   handleMouseDown = e => {
-    const { className} = e.target;
-    const { classNames } = this.props;
-    if (className === 'modal-overlay' || className === `modal-overlay ${classNames.overlay}`) this.handleClose();
+    const { className } = e.target;
+    if (className.includes('modal-overlay')) this.handleClose();
   };
 
   render() {
-    const {
-      head,
-      body,
-      footer,
-      id,
-      classNames,
-      animation
-    } = this.props;
+    const { head, body, footer, id, classNames, animation } = this.props;
     const { closed } = this.state;
     return (
       <div
-        className={`modal-overlay${classNames.overlay ? ` ${classNames.overlay}`: ''}${closed ? ' modal-overlay-close' : ''}`}
+        className={
+          closed
+            ? `${styles['modal-overlay']} ${styles['modal-overlay-close']}`
+            : classNames.overlay
+            ? `${styles['modal-overlay']} ${classNames.overlay}`
+            : styles['modal-overlay']
+        }
         id={id}
         onKeyDown={this.handleDown}
         tabIndex="0"
       >
         <div
-          className={`modal-content${classNames.modal ? ` ${classNames.modal}` : ''}${
-            closed ? ' modal-content-close' : ''
-          }`}
-          style={{animation: `${animation.name} ${animation.duration}`}}
+          className={
+            closed
+              ? `${styles['modal-content']} ${styles['modal-content-close']}`
+              : classNames.modal
+              ? `${styles['modal-content']} ${classNames.modal}`
+              : styles['modal-content']
+          }
+          style={{ animation: `${animation.name} ${animation.duration}` }}
         >
-          {this.props.closeIcon ? 
-            <img src={this.props.closeIcon.src} alt={this.props.closeIcon.alt} onClick={this.handleClose} className={classNames.closeIcon}></img> : 
-              <img src={closeIcon} alt="close" onClick={this.handleClose} className={classNames.closeIcon}/>}
+          {this.props.closeIcon ? (
+            <img
+              src={this.props.closeIcon.src}
+              alt={this.props.closeIcon.alt}
+              onClick={this.handleClose}
+              className={classNames.closeIcon}
+            ></img>
+          ) : (
+            <img
+              src={closeIcon}
+              alt="close"
+              onClick={this.handleClose}
+              className={classNames.closeIcon}
+            />
+          )}
           {typeof head === 'string' ? <h2>{head}</h2> : head}
           <div className="body">
             {typeof body === 'string' ? <p>{body}</p> : body}
@@ -97,8 +115,8 @@ Modal.defaultProps = {
   styles: null,
   classNames: { overlay: '', modal: '', closeIcon: '' },
   closeIcon: null,
-  animation: { name: 'fade-in', duration: '500ms'}
-}
+  animation: { name: 'fade-in', duration: '500ms' }
+};
 
 Modal.prototypes = {
   head: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
@@ -106,7 +124,7 @@ Modal.prototypes = {
   footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   styles: PropTypes.object,
   id: PropTypes.number,
-  closeOnEscape: PropTypes.bool,
+  closeOnEscape: PropTypes.bool
 };
 
 export default Modal;
