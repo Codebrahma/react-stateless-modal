@@ -1,7 +1,7 @@
 {
   "name": "cb-modal-lib-example",
   "homepage": "https://Sigkill32.github.io/cb-modal-lib",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "dependencies": {
