@@ -32,7 +32,6 @@ The modal libraries in existence such as `react-responsive-modal` requires users
 import React, { Component } from "react";
 import { openModal } from "cb-react-modal";
 import "cb-react-modal/dist/modalStyle.css";
-
 class Example extends Component {
   openModal = () => {
     openModal({
@@ -45,15 +44,11 @@ class Example extends Component {
       footer: () => (
         /* component or string to render footer */
       ),
-      styles: () => (
-        /* style object to add custom styles to the container*/
-      ),
-      clsName: () => (
-        /* A custom classname for the modal container */
-      ),
-      closeOnEscape: () => (
-        /* Setting true closes the modal on pressing escape key setting false does the opposite */
-      )
+      classNames: { overlay: className for overlay, modal: className for the modal, closeIcon: className for close icon},
+      closeOnEscape: /* Setting true closes the modal on pressing escape key setting false does the opposite (Optional)*/,
+      closeIcon: { src: IconObject, alt: 'alt text for the icon'},
+      animation: { name: choose from 'bounce', 'fade-in' and 'zoom' animation, duration: 'animationDuration'},
+      containerId: /* Id of the custom container over which you would like the modal to be mounted */
     });
   };
   render() {

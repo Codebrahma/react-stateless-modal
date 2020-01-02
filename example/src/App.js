@@ -18,7 +18,7 @@ export default class App extends Component {
       footer: () => (
         <button onClick={this.openInnerModal}>Open Inner Modal</button>
       ),
-      animation: { name: 'zoom-in', duration: '500ms' }
+      containerId: 'modals'
     });
   };
 
@@ -28,7 +28,7 @@ export default class App extends Component {
       body: () => <p>Inner Body</p>,
       footer: () => <p>Inner Footer</p>,
       closeIcon: { src: closeSrc, alt:'close' },
-      classNames: {overlay: 'overlay', modal: 'mod', closeIcon: 'ico'},
+      classNames: {overlay: 'overlay', modal: 'mod', closeIcon: 'ico'}
     });
   };
 
