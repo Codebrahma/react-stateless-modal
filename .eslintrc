@@ -1,20 +1,11 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended"],
-  "plugins": ["react", "prettier"],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "browser": true,
-    "node": true
-  },
+  "parser": "babel-eslint",
+  "extends": "airbnb",
   "rules": {
     "react/jsx-filename-extension": 0,
     "import/no-unresolved": 0,
     "import/extensions": 0,
-    "function-paren-newline": ["off"],
+    "function-paren-newline": ["error", "consistent"],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -25,12 +16,15 @@
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-autofocus": "off",
-    "no-underscore-dangle": 0,
-    // "eslint.autoFixOnSave": true,
-    "no-prototype-builtins": "off",
-    "react/prop-types": "off",
-    "no-param-reassign": "off",
-    "quotes": ["error", "single"],
-    "prettier/prettier": "error"
+    "no-underscore-dangle": 0
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react"],
+  "env": {
+    "browser": true
   }
 }

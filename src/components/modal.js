@@ -7,92 +7,94 @@ class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      closed: false
+      closed: false,
     };
   }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown, false);
     document.addEventListener('mousedown', this.handleMouseDown, false);
-    console.log(styles);
   }
 
   componentWillUnmount() {
     this.removeListener();
   }
 
-  handleClose = () => {
-    this.setState({ closed: true });
-    setTimeout(() => {
-      this.unmountModal(this.props.id);
-      F;
-    }, 250);
-    this.removeListener();
-  };
-
   removeListener = () => {
     document.removeEventListener('keydown', this.handleKeyDown, false);
     document.removeEventListener('mousedown', this.handleMouseDown, false);
   };
 
-  unmountModal = id => {
+  handleClose = () => {
+    this.setState({ closed: true });
+    setTimeout(() => {
+      const { id } = this.props;
+      this.unmountModal(id);
+    }, 250);
+    this.removeListener();
+  };
+
+  unmountModal = (id) => {
     this.setState({ closed: false });
     const element = document.querySelector(`#app-modal-${id}`);
     element.parentNode.removeChild(element);
   };
 
-  handleKeyDown = e => {
+  handleKeyDown = (e) => {
     const { closeOnEscape } = this.props;
     if (closeOnEscape === false) return;
     const ESCAPE_KEY_CODE = 27;
     if (e.keyCode === ESCAPE_KEY_CODE) this.handleClose();
   };
 
-  handleMouseDown = e => {
+  handleMouseDown = (e) => {
     const { className } = e.target;
     if (className.includes('modal-overlay')) this.handleClose();
   };
 
   render() {
-    const { head, body, footer, id, classNames, animation } = this.props;
+    const {
+      head,
+      body,
+      footer,
+      id,
+      classNames,
+      animation,
+      closeIcon: closeIco,
+    } = this.props;
     const { closed } = this.state;
     return (
       <div
-        className={
-          closed
-            ? `${styles['modal-overlay']} ${styles['modal-overlay-close']}`
-            : classNames.overlay
-            ? `${styles['modal-overlay']} ${classNames.overlay}`
-            : styles['modal-overlay']
-        }
+        className={`${styles['modal-overlay']}${
+          classNames.overlay ? ` ${classNames.overlay}` : ''
+        }${closed ? styles['modal-overlay-close'] : ''}`}
         id={id}
         onKeyDown={this.handleDown}
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex="0"
       >
         <div
-          className={
-            closed
-              ? `${styles['modal-content']} ${styles['modal-content-close']}`
-              : classNames.modal
-              ? `${styles['modal-content']} ${classNames.modal}`
-              : styles['modal-content']
-          }
+          className={`${styles['modal-content']}${
+            classNames.modal ? ` ${classNames.modal}` : ''
+          }${closed ? styles['modal-content-close'] : ''}`}
           style={{ animation: `${animation.name} ${animation.duration}` }}
         >
-          {this.props.closeIcon ? (
-            <img
-              src={this.props.closeIcon.src}
-              alt={this.props.closeIcon.alt}
-              onClick={this.handleClose}
-              className={classNames.closeIcon}
-            ></img>
+          {closeIco ? (
+            <button onClick={this.handleClose} type="button">
+              <img
+                src={closeIco.src}
+                alt={closeIco.alt}
+                className={classNames.closeIcon}
+              />
+            </button>
           ) : (
-            <img
-              src={closeIcon}
-              alt="close"
-              onClick={this.handleClose}
-              className={classNames.closeIcon}
-            />
+            <button onClick={this.handleClose} type="button">
+              <img
+                src={closeIcon}
+                alt="close"
+                className={classNames.closeIcon}
+              />
+            </button>
           )}
           {typeof head === 'string' ? <h2>{head}</h2> : head}
           <div className="body">
@@ -115,16 +117,30 @@ Modal.defaultProps = {
   styles: null,
   classNames: { overlay: '', modal: '', closeIcon: '' },
   closeIcon: null,
-  animation: { name: 'fade-in', duration: '500ms' }
+  animation: { name: 'fade-in', duration: '500ms' },
+  id: null,
 };
 
-Modal.prototypes = {
+Modal.propTypes = {
   head: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  styles: PropTypes.object,
+  styles: PropTypes.shape({}),
   id: PropTypes.number,
-  closeOnEscape: PropTypes.bool
+  closeOnEscape: PropTypes.bool,
+  animation: PropTypes.shape({
+    name: PropTypes.string,
+    duration: PropTypes.string,
+  }),
+  closeIcon: PropTypes.shape({
+    src: PropTypes.object,
+    alt: PropTypes.string,
+  }),
+  classNames: PropTypes.shape({
+    overlay: PropTypes.string,
+    modal: PropTypes.string,
+    closeIcon: PropTypes.string,
+  }),
 };
 
 export default Modal;
