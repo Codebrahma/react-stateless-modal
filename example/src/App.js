@@ -5,6 +5,11 @@ import './test.css';
 import closeSrc from './twitter.svg'
 
 export default class App extends Component {
+
+  // componentDidMount() {
+  //   this.openModal();
+  // }
+
   openModal = () => {
     openModal({
       head: () => <h2>Random Heading</h2>,
@@ -18,7 +23,8 @@ export default class App extends Component {
       footer: () => (
         <button onClick={this.openInnerModal}>Open Inner Modal</button>
       ),
-      containerId: 'modals'
+      containerId: 'modals',
+      animation: {name: 'zoom-in', duration: '250ms'}
     });
   };
 
@@ -28,7 +34,7 @@ export default class App extends Component {
       body: () => <p>Inner Body</p>,
       footer: () => <p>Inner Footer</p>,
       closeIcon: { src: closeSrc, alt:'close' },
-      classNames: {overlay: 'overlay', modal: 'mod', closeIcon: 'ico'}
+      classNames: {overlay: 'overlay', modal: 'mod', closeIcon: 'ico'},
     });
   };
 

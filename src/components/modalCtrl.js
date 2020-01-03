@@ -15,17 +15,23 @@ const openModal = (contents) => {
     animation,
   } = contents;
 
+
   const containerDomNode = document.createElement('div');
   const rand = Math.floor(Math.random() * 100000 + 1);
   containerDomNode.setAttribute('id', `app-modal-${rand}`);
   if (containerId) document.getElementById(containerId).appendChild(containerDomNode);
   else document.body.appendChild(containerDomNode);
 
+  const determineProp = (prop) => {
+    if (prop) return typeof prop === 'string' ? prop : prop();
+    return '';
+  };
+
   ReactDOM.render(
     <Modal
-      head={typeof head === 'string' ? head : head()}
-      body={typeof body === 'string' ? body : body()}
-      footer={typeof footer === 'string' ? footer : footer()}
+      head={determineProp(head)}
+      body={determineProp(body)}
+      footer={determineProp(footer)}
       closeOnEscape={closeOnEscape}
       styles={styles}
       classNames={classNames}

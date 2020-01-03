@@ -11,28 +11,17 @@ class Modal extends Component {
     };
   }
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown, false);
-    document.addEventListener('mousedown', this.handleMouseDown, false);
-  }
-
-  componentWillUnmount() {
-    this.removeListener();
-  }
-
-  removeListener = () => {
-    document.removeEventListener('keydown', this.handleKeyDown, false);
-    document.removeEventListener('mousedown', this.handleMouseDown, false);
+  handleClose = () => {
+    const { id } = this.props;
+    this.closeOverlayById(id);
   };
 
-  handleClose = () => {
+  closeOverlayById = (id) => {
     this.setState({ closed: true });
     setTimeout(() => {
-      const { id } = this.props;
       this.unmountModal(id);
     }, 250);
-    this.removeListener();
-  };
+  }
 
   unmountModal = (id) => {
     this.setState({ closed: false });
@@ -47,10 +36,15 @@ class Modal extends Component {
     if (e.keyCode === ESCAPE_KEY_CODE) this.handleClose();
   };
 
-  handleMouseDown = (e) => {
-    const { className } = e.target;
-    if (className.includes('modal-overlay')) this.handleClose();
-  };
+  classNameDeterminer = (type) => {
+    const { classNames } = this.props;
+    return `${styles[type === 'overlay' ? 'modal-overlay' : 'modal-content']} ${classNames[type]}`;
+  }
+
+  handleOverlayClick = (e) => {
+    const { id } = e.target;
+    if (id) this.closeOverlayById(id);
+  }
 
   render() {
     const {
@@ -65,22 +59,19 @@ class Modal extends Component {
     const { closed } = this.state;
     return (
       <div
-        className={`${styles['modal-overlay']}${
-          classNames.overlay ? ` ${classNames.overlay}` : ''
-        }${closed ? styles['modal-overlay-close'] : ''}`}
+        className={closed ? `${this.classNameDeterminer('overlay')} ${styles['modal-overlay-close']}` : this.classNameDeterminer('overlay')}
         id={id}
         onKeyDown={this.handleDown}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex="0"
+        onClick={this.handleOverlayClick}
       >
         <div
-          className={`${styles['modal-content']}${
-            classNames.modal ? ` ${classNames.modal}` : ''
-          }${closed ? styles['modal-content-close'] : ''}`}
+          className={closed ? `${this.classNameDeterminer('modal')} ${styles['modal-content-close']}` : this.classNameDeterminer('modal')}
           style={{ animation: `${animation.name} ${animation.duration}` }}
         >
           {closeIco ? (
-            <button onClick={this.handleClose} type="button">
+            <button onClick={this.handleClose} type="button" className={styles.closeButton}>
               <img
                 src={closeIco.src}
                 alt={closeIco.alt}
@@ -88,7 +79,7 @@ class Modal extends Component {
               />
             </button>
           ) : (
-            <button onClick={this.handleClose} type="button">
+            <button onClick={this.handleClose} type="button" className={styles.closeButton}>
               <img
                 src={closeIcon}
                 alt="close"
@@ -133,7 +124,7 @@ Modal.propTypes = {
     duration: PropTypes.string,
   }),
   closeIcon: PropTypes.shape({
-    src: PropTypes.object,
+    src: PropTypes.string,
     alt: PropTypes.string,
   }),
   classNames: PropTypes.shape({

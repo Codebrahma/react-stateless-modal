@@ -33,10 +33,21 @@
 
 .modal-content img {
   width: 12px;
+  /* position: absolute; */
+  /* right: 25px; */
+  /* top: 25px; */
+  /* cursor: pointer; */
+}
+
+.closeButton {
+  /* width: 12px; */
   position: absolute;
   right: 25px;
-  top: 25px;
+  /* top: 25px; */
   cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .modal-overlay-close {
