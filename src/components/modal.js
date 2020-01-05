@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import closeIcon from '../images/cross.svg';
+import crossIcon from '../images/cross.svg';
 import styles from '../styles/modalStyle.css';
+import { viewStore, requestRemoval, getModalCount } from './store'
 
 class Modal extends Component {
   constructor(props) {
@@ -11,8 +12,32 @@ class Modal extends Component {
     };
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleDown, false);
+    // this.overlayFocus.focus();
+  }
+
+  componentWillUnmount() {
+    this.removeListner();
+  }
+
+  removeListner = () => {
+    document.removeEventListener('keydown', this.handleDown, false);
+  }
+
+  handleDown = () => {
+    requestRemoval();
+    // viewStore();
+    console.log('handcalled')
+    const modalCOunt = getModalCount();
+    if (modalCOunt === 0) {
+      this.removeListner();
+    }
+  }
+
   handleClose = () => {
     const { id } = this.props;
+    // console.log('id :', id)
     this.closeOverlayById(id);
   };
 
@@ -21,30 +46,40 @@ class Modal extends Component {
     setTimeout(() => {
       this.unmountModal(id);
     }, 250);
-  }
+    this.removeListner();
+  };
 
   unmountModal = (id) => {
-    this.setState({ closed: false });
+    // this.setState({ closed: false });
     const element = document.querySelector(`#app-modal-${id}`);
     element.parentNode.removeChild(element);
+    // this.overlayFocus.focus();
   };
 
   handleKeyDown = (e) => {
     const { closeOnEscape } = this.props;
+    const { id } = e.target;
+    this.setState({currentId: id})
     if (closeOnEscape === false) return;
     const ESCAPE_KEY_CODE = 27;
-    if (e.keyCode === ESCAPE_KEY_CODE) this.handleClose();
+    if (e.keyCode === ESCAPE_KEY_CODE) {
+      this.handleClose()
+    }
   };
 
   classNameDeterminer = (type) => {
     const { classNames } = this.props;
-    return `${styles[type === 'overlay' ? 'modal-overlay' : 'modal-content']} ${classNames[type]}`;
-  }
+    return `${styles[type === 'overlay' ? 'modal-overlay' : 'modal-content']} ${
+      classNames[type]
+    }`;
+  };
 
   handleOverlayClick = (e) => {
     const { id } = e.target;
-    if (id) this.closeOverlayById(id);
-  }
+    if (id) {
+      this.closeOverlayById(id)
+    };
+  };
 
   render() {
     const {
@@ -54,34 +89,57 @@ class Modal extends Component {
       id,
       classNames,
       animation,
-      closeIcon: closeIco,
+      closeIcon
     } = this.props;
     const { closed } = this.state;
+    // viewStore();
+
     return (
       <div
-        className={closed ? `${this.classNameDeterminer('overlay')} ${styles['modal-overlay-close']}` : this.classNameDeterminer('overlay')}
+        className={
+          closed
+            ? `${this.classNameDeterminer('overlay')} ${
+              styles['modal-overlay-close']
+            }`
+            : this.classNameDeterminer('overlay')
+        }
         id={id}
-        onKeyDown={this.handleDown}
+        // onKeyDown={this.handleKeyDown}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex="0"
         onClick={this.handleOverlayClick}
+        ref={ref => this.overlayFocus = ref}
       >
         <div
-          className={closed ? `${this.classNameDeterminer('modal')} ${styles['modal-content-close']}` : this.classNameDeterminer('modal')}
+          className={
+            closed
+              ? `${this.classNameDeterminer('modal')} ${
+                styles['modal-content-close']
+              }`
+              : this.classNameDeterminer('modal')
+          }
           style={{ animation: `${animation.name} ${animation.duration}` }}
         >
-          {closeIco ? (
-            <button onClick={this.handleClose} type="button" className={styles.closeButton}>
+          {closeIcon ? (
+            <button
+              onClick={this.handleClose}
+              type="button"
+              className={styles.closeButton}
+            >
               <img
-                src={closeIco.src}
-                alt={closeIco.alt}
+                src={closeIcon.src}
+                alt={closeIcon.alt}
                 className={classNames.closeIcon}
               />
             </button>
           ) : (
-            <button onClick={this.handleClose} type="button" className={styles.closeButton}>
+            <button
+              onClick={this.handleClose}
+              type="button"
+              className={styles.closeButton}
+            >
               <img
-                src={closeIcon}
+                src={crossIcon}
                 alt="close"
                 className={classNames.closeIcon}
               />

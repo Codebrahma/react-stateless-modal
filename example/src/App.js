@@ -23,7 +23,7 @@ export default class App extends Component {
       footer: () => (
         <button onClick={this.openInnerModal}>Open Inner Modal</button>
       ),
-      containerId: 'modals',
+      // containerId: 'modals',
       animation: {name: 'zoom-in', duration: '250ms'}
     });
   };
@@ -31,12 +31,25 @@ export default class App extends Component {
   openInnerModal = () => {
     openModal({
       head: 'Inner Heading',
-      body: () => <p>Inner Body</p>,
-      footer: () => <p>Inner Footer</p>,
+      body: () => <p>Inner Body  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+          hendrerit risus, sed porttitor quam  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+          hendrerit risus, sed porttitor quam  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+          hendrerit risus, sed porttitor quam</p>,
+      footer: () => <button onClick={this.inner}>Inner</button>,
       closeIcon: { src: closeSrc, alt:'close' },
       classNames: {overlay: 'overlay', modal: 'mod', closeIcon: 'ico'},
     });
   };
+
+  inner = () => {
+    openModal({
+      head: 'Yet another inner modal',
+      body: 'A bogus body'
+    })
+  }
 
   render() {
     return (
