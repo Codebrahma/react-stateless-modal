@@ -1,3 +1,5 @@
+import Modal from "./modal";
+
 let ids = [];
 let modalCount = 0;
 let removeRequestCount = 1;
@@ -7,28 +9,27 @@ const updateIds = (id) => {
   ids.push(id);
   modalCount+=1;
   stackHeight+=1;
+  Modal.stackCount+=1;
 }
 
 const viewStore = () => {
-  // console.log('ids:', ids, 'modalCount:', modalCount, "removeRequestCount", removeRequestCount,  )
   const state = {ids, modalCount, removeRequestCount, stackHeight}
   console.log(state);
 }
 
 const removeLastId = () => {
-    // console.log('remove last called')
     unmountModal();
     ids.pop();
     modalCount-=1;
     removeRequestCount = 1;
     if (modalCount === 0) {
       stackHeight = 0;
+      Modal.stackCount = 0;
     }
 }
 
 const requestRemoval = () => {
   if (removeRequestCount === stackHeight) {
-    // console.log('req completed')
     removeLastId();
   }
   else removeRequestCount+=1;
@@ -39,7 +40,6 @@ const getModalCount = () => modalCount
 const getLastId = () => ids[ids.length - 1];
 
 const unmountModal = () => {
-  // console.log('unmount')
   const element = document.querySelector(`#app-modal-${getLastId()}`);
   element.parentNode.removeChild(element);
 }

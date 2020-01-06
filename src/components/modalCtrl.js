@@ -24,6 +24,7 @@ const openModal = (contents) => {
   if (containerId) document.getElementById(containerId).appendChild(containerDomNode);
   else document.body.appendChild(containerDomNode);
   updateIds(rand);
+  Modal.ids.push(rand);
 
 
   const determineElement = (element) => {

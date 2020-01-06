@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import crossIcon from '../images/cross.svg';
 import styles from '../styles/modalStyle.css';
-import { viewStore, requestRemoval, getModalCount } from './store'
 
 class Modal extends Component {
+  static ids = [];
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,8 +14,9 @@ class Modal extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleDown, false);
-    // this.overlayFocus.focus();
+    if (Modal.ids.length === 1)  { 
+      document.addEventListener('keydown', this.handleKeyDown, false);
+    }
   }
 
   componentWillUnmount() {
@@ -22,21 +24,16 @@ class Modal extends Component {
   }
 
   removeListner = () => {
-    document.removeEventListener('keydown', this.handleDown, false);
+    document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
   handleDown = () => {
-    requestRemoval();
-    viewStore();
-    const modalCount = getModalCount();
-    if (modalCount === 1) {
-      this.removeListner();
-    }
+    const lastId = Modal.ids[Modal.ids.length - 1];
+    this.closeOverlayById(lastId);
   }
 
   handleClose = () => {
     const { id } = this.props;
-    // console.log('id :', id)
     this.closeOverlayById(id);
   };
 
@@ -45,24 +42,25 @@ class Modal extends Component {
     setTimeout(() => {
       this.unmountModal(id);
     }, 250);
-    this.removeListner();
+    Modal.ids.pop();
+    if (Modal.ids.length === 0) {
+      this.removeListner();
+      console.log('listener removed')
+    }
   };
 
   unmountModal = (id) => {
-    // this.setState({ closed: false });
     const element = document.querySelector(`#app-modal-${id}`);
     element.parentNode.removeChild(element);
-    // this.overlayFocus.focus();
   };
 
   handleKeyDown = (e) => {
     const { closeOnEscape } = this.props;
-    const { id } = e.target;
-    this.setState({currentId: id})
     if (closeOnEscape === false) return;
     const ESCAPE_KEY_CODE = 27;
     if (e.keyCode === ESCAPE_KEY_CODE) {
-      this.handleClose()
+      const lastId = Modal.ids[Modal.ids.length - 1];
+      this.closeOverlayById(lastId);
     }
   };
 
@@ -91,7 +89,6 @@ class Modal extends Component {
       closeIcon
     } = this.props;
     const { closed } = this.state;
-    // viewStore();
 
     return (
       <div
@@ -103,11 +100,8 @@ class Modal extends Component {
             : this.classNameDeterminer('overlay')
         }
         id={id}
-        // onKeyDown={this.handleKeyDown}
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex="0"
         onClick={this.handleOverlayClick}
-        ref={ref => this.overlayFocus = ref}
       >
         <div
           className={
