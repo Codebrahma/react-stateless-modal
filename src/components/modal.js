@@ -27,10 +27,9 @@ class Modal extends Component {
 
   handleDown = () => {
     requestRemoval();
-    // viewStore();
-    console.log('handcalled')
-    const modalCOunt = getModalCount();
-    if (modalCOunt === 0) {
+    viewStore();
+    const modalCount = getModalCount();
+    if (modalCount === 1) {
       this.removeListner();
     }
   }

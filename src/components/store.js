@@ -10,7 +10,9 @@ const updateIds = (id) => {
 }
 
 const viewStore = () => {
-  console.log('ids:', ids, 'modalCount:', modalCount, "removeRequestCount", removeRequestCount )
+  // console.log('ids:', ids, 'modalCount:', modalCount, "removeRequestCount", removeRequestCount,  )
+  const state = {ids, modalCount, removeRequestCount, stackHeight}
+  console.log(state);
 }
 
 const removeLastId = () => {
@@ -18,10 +20,8 @@ const removeLastId = () => {
     unmountModal();
     ids.pop();
     modalCount-=1;
-    if (modalCount === 1) removeRequestCount = 0
-    else removeRequestCount = 1;
+    removeRequestCount = 1;
     if (modalCount === 0) {
-      // removeRequestCount = 0;
       stackHeight = 0;
     }
 }

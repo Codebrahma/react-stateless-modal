@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import Modal from './modal';
-import {getCurrentIndex, updateIndices} from './indexGenerator'
+import { updateIds} from './store';
 
 
 const openModal = (contents) => {
@@ -19,13 +19,11 @@ const openModal = (contents) => {
 
 
   const containerDomNode = document.createElement('div');
-  // const rand = Math.floor(Math.random() * 100000 + 1);
-  let index;
-  if (getCurrentIndex) index = getCurrentIndex() + 1;
-  else index = 1000;
-  containerDomNode.setAttribute('id', `app-modal-${index}`);
+  const rand = Math.floor(Math.random() * 100000 + 1);
+  containerDomNode.setAttribute('id', `app-modal-${rand}`);
   if (containerId) document.getElementById(containerId).appendChild(containerDomNode);
   else document.body.appendChild(containerDomNode);
+  updateIds(rand);
 
 
   const determineElement = (element) => {
@@ -41,7 +39,7 @@ const openModal = (contents) => {
       closeOnEscape={closeOnEscape}
       styles={styles}
       classNames={classNames}
-      id={index}
+      id={rand}
       closeIcon={closeIcon}
       animation={animation}
     />,
