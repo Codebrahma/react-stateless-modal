@@ -4,7 +4,7 @@ import crossIcon from '../images/cross.svg';
 import styles from '../styles/modalStyle.css';
 
 class Modal extends Component {
-  static ids = [];
+  static instances = [];
 
   constructor(props) {
     super(props);
@@ -14,9 +14,13 @@ class Modal extends Component {
   }
 
   componentDidMount() {
-    if (Modal.ids.length === 1)  { 
+    const { closeOnEscape } = this.props;
+    Modal.instances.push({ instance: this, closeOnEscape });
+    if (Modal.instances.length === 1)  { 
       document.addEventListener('keydown', this.handleKeyDown, false);
     }
+    console.log("isnatnce", Modal.instances.closeOnEscape);
+    console.log("props ", this.props.closeOnEscape)
   }
 
   componentWillUnmount() {
@@ -27,23 +31,17 @@ class Modal extends Component {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
-  handleDown = () => {
-    const lastId = Modal.ids[Modal.ids.length - 1];
-    this.closeOverlayById(lastId);
-  }
-
   handleClose = () => {
-    const { id } = this.props;
-    this.closeOverlayById(id);
+    this.closeOverlay();
   };
 
-  closeOverlayById = (id) => {
+  closeOverlay = () => {
     this.setState({ closed: true });
     setTimeout(() => {
-      this.unmountModal(id);
+      this.unmountModal(this.props.id);
     }, 250);
-    Modal.ids.pop();
-    if (Modal.ids.length === 0) {
+    Modal.instances.pop();
+    if (Modal.instances.length === 0) {
       this.removeListner();
     }
   };
@@ -54,12 +52,12 @@ class Modal extends Component {
   };
 
   handleKeyDown = (e) => {
-    const { closeOnEscape } = Modal.ids[Modal.ids.length - 1];
-    if (closeOnEscape === false) return;
     const ESCAPE_KEY_CODE = 27;
-    if (e.keyCode === ESCAPE_KEY_CODE) {
-      const lastId = Modal.ids[Modal.ids.length - 1].id;
-      this.closeOverlayById(lastId);
+    const {closeOnEscape} = this.props;
+    if (e.keyCode === ESCAPE_KEY_CODE && Modal.instances.length > 0 && closeOnEscape) {
+      const lastInstance = Modal.instances[Modal.instances.length - 1].instance;
+      lastInstance.closeOverlay();
+      console.log(closeOnEscape)
     }
   };
 
@@ -73,7 +71,7 @@ class Modal extends Component {
   handleOverlayClick = (e) => {
     const { id } = e.target;
     if (id) {
-      this.closeOverlayById(id)
+      this.closeOverlay()
     };
   };
 
@@ -88,6 +86,8 @@ class Modal extends Component {
       closeIcon
     } = this.props;
     const { closed } = this.state;
+
+    console.log(id)
 
     return (
       <div
@@ -154,7 +154,7 @@ Modal.defaultProps = {
   head: '',
   body: '',
   footer: '',
-  closeOnEscape: true,
+  // closeOnEscape: true,
   styles: null,
   classNames: { overlay: '', modal: '', closeIcon: '' },
   closeIcon: null,

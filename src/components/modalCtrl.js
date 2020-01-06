@@ -22,8 +22,6 @@ const openModal = (contents) => {
   containerDomNode.setAttribute('id', `app-modal-${rand}`);
   if (containerId) document.getElementById(containerId).appendChild(containerDomNode);
   else document.body.appendChild(containerDomNode);
-  Modal.ids.push({id: rand, closeOnEscape});
-
 
   const determineElement = (element) => {
     if (element) return typeof element === 'string' ? element : element();
@@ -35,7 +33,7 @@ const openModal = (contents) => {
       head={determineElement(head)}
       body={determineElement(body)}
       footer={determineElement(footer)}
-      // closeOnEscape={closeOnEscape}
+      closeOnEscape={closeOnEscape === undefined ? true : closeOnEscape}
       styles={styles}
       classNames={classNames}
       id={rand}
