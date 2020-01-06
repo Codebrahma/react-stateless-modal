@@ -24,7 +24,7 @@ export default class App extends Component {
         <button onClick={this.openInnerModal}>Open Inner Modal</button>
       ),
       // containerId: 'modals',
-      animation: {name: 'zoom-in', duration: '250ms'}
+      animation: {name: 'zoom-in', duration: '250ms'},
     });
   };
 
@@ -47,7 +47,8 @@ export default class App extends Component {
   inner = () => {
     openModal({
       head: 'Yet another inner modal',
-      body: 'A bogus body'
+      body: 'A bogus body',
+      closeOnEscape: false,
     })
   }
 

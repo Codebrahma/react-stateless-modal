@@ -45,7 +45,6 @@ class Modal extends Component {
     Modal.ids.pop();
     if (Modal.ids.length === 0) {
       this.removeListner();
-      console.log('listener removed')
     }
   };
 
@@ -55,11 +54,11 @@ class Modal extends Component {
   };
 
   handleKeyDown = (e) => {
-    const { closeOnEscape } = this.props;
+    const { closeOnEscape } = Modal.ids[Modal.ids.length - 1];
     if (closeOnEscape === false) return;
     const ESCAPE_KEY_CODE = 27;
     if (e.keyCode === ESCAPE_KEY_CODE) {
-      const lastId = Modal.ids[Modal.ids.length - 1];
+      const lastId = Modal.ids[Modal.ids.length - 1].id;
       this.closeOverlayById(lastId);
     }
   };

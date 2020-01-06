@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import Modal from './modal';
-import { updateIds} from './store';
 
 
 const openModal = (contents) => {
@@ -23,8 +22,7 @@ const openModal = (contents) => {
   containerDomNode.setAttribute('id', `app-modal-${rand}`);
   if (containerId) document.getElementById(containerId).appendChild(containerDomNode);
   else document.body.appendChild(containerDomNode);
-  updateIds(rand);
-  Modal.ids.push(rand);
+  Modal.ids.push({id: rand, closeOnEscape});
 
 
   const determineElement = (element) => {
@@ -37,7 +35,7 @@ const openModal = (contents) => {
       head={determineElement(head)}
       body={determineElement(body)}
       footer={determineElement(footer)}
-      closeOnEscape={closeOnEscape}
+      // closeOnEscape={closeOnEscape}
       styles={styles}
       classNames={classNames}
       id={rand}
