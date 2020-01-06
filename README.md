@@ -46,7 +46,7 @@ class Example extends Component {
       ),
       classNames: { overlay: className for overlay, modal: className for the modal, closeIcon: className for close icon},
       closeOnEscape: /* Setting true closes the modal on pressing escape key setting false does the opposite (Optional)*/,
-      closeIcon: { src: IconObject, alt: 'alt text for the icon'},
+      closeIcon: { src: IconObject, alt: alt text for the icon},
       animation: { name: choose from 'bounce', 'fade-in' and 'zoom' animation, duration: 'animationDuration'},
       containerId: /* Id of the custom container over which you would like the modal to be mounted */
     });
@@ -65,7 +65,7 @@ The library additionally gives you the flexibility of mounting a modal container
 
 ```jsx
 import React, { Component } from 'react';
-import { open } from 'cb-react-modal';
+import openModal from 'cb-react-modal';
 import 'cb-react-modal/dist/modalStyle.css';
 
 export default class App extends Component {
