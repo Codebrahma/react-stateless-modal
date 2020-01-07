@@ -44,6 +44,7 @@ const openModal = (contents) => {
       animation={animation}
       contents={contents}
       componentMode={componentMode}
+      open={true}
     />,
     containerDomNode,
   );

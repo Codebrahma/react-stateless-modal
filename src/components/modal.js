@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import crossIcon from '../images/cross.svg';
 import styles from '../styles/modalStyle.css';
+import ReactDOM from 'react-dom'
 
 class Modal extends Component {
   static instances = [];
@@ -32,9 +33,22 @@ class Modal extends Component {
     this.closeOverlay();
   };
 
+  componentDidUpdate(prevProps) {
+    const { open } = this.props;
+    if (open !== prevProps.open) {
+      if (!open)
+      setTimeout(() => {
+        this.setState(prevState => ({closed: !prevState.closed}));
+      })
+    }
+  }
+
   closeOverlay = () => {
-    const { componentMode} = this.props;
+    const { componentMode, onClose } = this.props;
     this.setState({ closed: true });
+    if (componentMode === undefined) {
+      onClose();
+    }
     setTimeout(() => {
       const DEFAULT_ID = 42069;
       const {id} = this.props;
@@ -47,6 +61,10 @@ class Modal extends Component {
   };
 
   unmountModal = id => {
+    const {componentMode} = this.props;
+    if (componentMode === undefined) {
+      return;
+    }
     const element = document.querySelector(`#app-modal-${id}`);
     element.parentNode.removeChild(element);
   };
@@ -87,11 +105,13 @@ class Modal extends Component {
       animation,
       closeIcon,
       componentMode,
+      open
     } = this.props;
     const { closed } = this.state;
 
     return (
-      <div
+      <div className="modal-component">
+        {open ? <div
         className={
           closed
             ? `${this.classNameDeterminer('overlay')} ${
@@ -141,6 +161,7 @@ class Modal extends Component {
             {typeof footer === 'string' ? <p>{footer}</p> : footer}
           </div>
         </div>
+      </div> : null}
       </div>
     );
   }

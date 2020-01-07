@@ -7,7 +7,7 @@ import closeSrc from './twitter.svg'
 export default class App extends Component {
 
   state = {
-    closed: false
+    open: false
   }
 
   openModal = () => {
@@ -52,12 +52,22 @@ export default class App extends Component {
     })
   }
 
+  handleClose = () => {
+    this.setState({open: false})
+  }
+
+  handleOpen = () => {
+    this.setState({open: true})
+  }
+
   render() {
+    const {open} = this.state;
     return (
       <div>
         <h1>Modal demo</h1>
         <button onClick={this.openModal}>Open Modal via function mode</button>
-        <Modal head="head"/>
+        <button onClick={this.handleOpen}>Open Modal via Component mode</button>
+        <Modal head="head" onClose={this.handleClose} open={open}/>
       </div>
     );
   }
