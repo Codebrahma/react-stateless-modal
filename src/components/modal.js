@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import crossIcon from '../images/cross.svg';
 import styles from '../styles/modalStyle.css';
-import ReactDOM from 'react-dom'
 
 class Modal extends Component {
   static instances = [];
@@ -108,6 +107,7 @@ class Modal extends Component {
       open
     } = this.props;
     const { closed } = this.state;
+    console.log(animation)
 
     return (
       <div className="modal-component">
