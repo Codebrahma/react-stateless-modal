@@ -58,7 +58,7 @@ class Example extends Component {
 
 The open method will mount the container for you.
 
-You may optionally choose to use the component mode of the library by importing and mounting the `Modal` component. you may use all the properties used in the object passed to the `openModal` function. The example below shows how to create a simple modal using component mode.
+You may optionally choose to use the component mode of the library by importing and mounting the `Modal` component. you may use all the properties used in the object passed to the `openModal` function. The example below shows how to create a simple modal using component mode. You additionally need to pass `open` and `onClose` prop. Refer docs for more information.
 
 ```jsx
 import React, { Component } from "react";
