@@ -14,20 +14,17 @@ class Modal extends Component {
   }
 
   componentDidMount() {
-    const { closeOnEscape } = this.props;
-    Modal.instances.push({ instance: this, closeOnEscape });
+    Modal.instances.push({ instance: this });
     if (Modal.instances.length === 1)  { 
       document.addEventListener('keydown', this.handleKeyDown, false);
     }
-    console.log("isnatnce", Modal.instances.closeOnEscape);
-    console.log("props ", this.props.closeOnEscape)
   }
 
   componentWillUnmount() {
-    this.removeListner();
+    this.removeListener();
   }
 
-  removeListner = () => {
+  removeListener = () => {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
@@ -42,7 +39,7 @@ class Modal extends Component {
     }, 250);
     Modal.instances.pop();
     if (Modal.instances.length === 0) {
-      this.removeListner();
+      this.removeListener();
     }
   };
 
@@ -54,10 +51,9 @@ class Modal extends Component {
   handleKeyDown = (e) => {
     const ESCAPE_KEY_CODE = 27;
     const {closeOnEscape} = this.props;
-    if (e.keyCode === ESCAPE_KEY_CODE && Modal.instances.length > 0 && closeOnEscape) {
-      const lastInstance = Modal.instances[Modal.instances.length - 1].instance;
+    const lastInstance = Modal.instances[Modal.instances.length - 1].instance;
+    if (e.keyCode === ESCAPE_KEY_CODE && Modal.instances.length > 0 && closeOnEscape && lastInstance.props.closeOnEscape) {
       lastInstance.closeOverlay();
-      console.log(closeOnEscape)
     }
   };
 
@@ -87,7 +83,6 @@ class Modal extends Component {
     } = this.props;
     const { closed } = this.state;
 
-    console.log(id)
 
     return (
       <div
