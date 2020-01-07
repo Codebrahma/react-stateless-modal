@@ -50,9 +50,8 @@ class Modal extends Component {
 
   handleKeyDown = (e) => {
     const ESCAPE_KEY_CODE = 27;
-    const {closeOnEscape} = this.props;
     const lastInstance = Modal.instances[Modal.instances.length - 1].instance;
-    if (e.keyCode === ESCAPE_KEY_CODE && Modal.instances.length > 0 && closeOnEscape && lastInstance.props.closeOnEscape) {
+    if (e.keyCode === ESCAPE_KEY_CODE && Modal.instances.length > 0 && lastInstance.props.closeOnEscape) {
       lastInstance.closeOverlay();
     }
   };
@@ -82,7 +81,6 @@ class Modal extends Component {
       closeIcon
     } = this.props;
     const { closed } = this.state;
-
 
     return (
       <div
@@ -149,7 +147,7 @@ Modal.defaultProps = {
   head: '',
   body: '',
   footer: '',
-  // closeOnEscape: true,
+  closeOnEscape: true,
   styles: null,
   classNames: { overlay: '', modal: '', closeIcon: '' },
   closeIcon: null,
