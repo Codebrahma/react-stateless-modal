@@ -31,7 +31,6 @@ The modal libraries in existence such as `react-responsive-modal` requires users
 ```jsx
 import React, { Component } from "react";
 import { openModal } from "cb-react-modal";
-import "cb-react-modal/dist/modalStyle.css";
 class Example extends Component {
   openModal = () => {
     openModal({
@@ -58,6 +57,26 @@ class Example extends Component {
 ```
 
 The open method will mount the container for you.
+
+You may optionally choose to use the component mode of the library by importing and mounting the `Modal` component. you may use all the properties used in the object passed to the `openModal` function. The example below shows how to create a simple modal using component mode.
+
+```jsx
+import React, { Component } from "react";
+import { Modal } from "cb-react-modal";
+
+const ModalDemo = () => {
+  return (
+    <Modal
+    head="A random Heading",
+    body="This is a body",
+    footer="A random footer"
+  />
+  )
+
+  export default ModalDemo;
+}
+
+```
 
 ### Nested modal support
 
