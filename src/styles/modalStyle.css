@@ -33,17 +33,11 @@
 
 .modal-content img {
   width: 12px;
-  /* position: absolute; */
-  /* right: 25px; */
-  /* top: 25px; */
-  /* cursor: pointer; */
 }
 
 .closeButton {
-  /* width: 12px; */
   position: absolute;
   right: 25px;
-  /* top: 25px; */
   cursor: pointer;
   background: none;
   border: none;
@@ -75,6 +69,19 @@
 
 .close-modal p {
   margin: 0;
+}
+
+.head {
+  border-bottom: 1px solid black;
+}
+
+.body {
+  padding: 8px 0;
+}
+
+.footer {
+  border-top: 1px solid black;
+  padding: 8px 0;
 }
 
 @keyframes fade-out {

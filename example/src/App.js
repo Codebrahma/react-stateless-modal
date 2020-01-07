@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { openModal } from 'cb-react-modal';
+import { openModal, Modal } from 'cb-react-modal';
 import 'cb-react-modal/dist/modalStyle.css';
 import './test.css';
 import closeSrc from './twitter.svg'
@@ -9,6 +9,10 @@ export default class App extends Component {
   // componentDidMount() {
   //   this.openModal();
   // }
+
+  state = {
+    closed: false
+  }
 
   openModal = () => {
     openModal({
@@ -56,7 +60,7 @@ export default class App extends Component {
     return (
       <div>
         <h1>Modal demo</h1>
-        <button onClick={this.openModal}>Show</button>
+        <button onClick={this.openModal}>Open Modal via function mode</button>
       </div>
     );
   }
