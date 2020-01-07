@@ -92,7 +92,6 @@ class Modal extends Component {
             : this.classNameDeterminer('overlay')
         }
         id={id}
-        tabIndex="0"
         onClick={this.handleOverlayClick}
       >
         <div

@@ -1,3 +1,3 @@
-import { openModal } from './components/modalCtrl';
+import { openModal, Modal } from './components/modalCtrl';
 
-export default openModal;
+export  { openModal, Modal };

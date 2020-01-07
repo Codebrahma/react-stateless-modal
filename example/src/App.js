@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import openModal from 'cb-react-modal';
+import { openModal } from 'cb-react-modal';
 import 'cb-react-modal/dist/modalStyle.css';
 import './test.css';
 import closeSrc from './twitter.svg'
