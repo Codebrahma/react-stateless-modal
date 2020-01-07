@@ -33,9 +33,12 @@ class Modal extends Component {
   };
 
   closeOverlay = () => {
+    const { componentMode} = this.props;
     this.setState({ closed: true });
     setTimeout(() => {
-      this.unmountModal(this.props.id);
+      const DEFAULT_ID = 42069;
+      const {id} = this.props;
+      this.unmountModal(componentMode === undefined ? DEFAULT_ID : id);
     }, 250);
     Modal.instances.pop();
     if (Modal.instances.length === 0) {
@@ -82,7 +85,8 @@ class Modal extends Component {
       id,
       classNames,
       animation,
-      closeIcon
+      closeIcon,
+      componentMode,
     } = this.props;
     const { closed } = this.state;
 
@@ -95,7 +99,7 @@ class Modal extends Component {
               }`
             : this.classNameDeterminer('overlay')
         }
-        id={id}
+        id={componentMode === undefined ? `app-modal-${42069}` : id}
         onClick={this.handleOverlayClick}
       >
         <div

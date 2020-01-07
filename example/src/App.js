@@ -6,10 +6,6 @@ import closeSrc from './twitter.svg'
 
 export default class App extends Component {
 
-  // componentDidMount() {
-  //   this.openModal();
-  // }
-
   state = {
     closed: false
   }
@@ -61,6 +57,7 @@ export default class App extends Component {
       <div>
         <h1>Modal demo</h1>
         <button onClick={this.openModal}>Open Modal via function mode</button>
+        <Modal head="head"/>
       </div>
     );
   }

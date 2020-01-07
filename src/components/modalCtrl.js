@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import Modal from './modal';
 
-
 const openModal = (contents) => {
   const {
     head,
@@ -28,6 +27,10 @@ const openModal = (contents) => {
     return '';
   };
 
+  let componentMode = true;
+  if (contents) componentMode = false;
+
+
   ReactDOM.render(
     <Modal
       head={determineElement(head)}
@@ -39,6 +42,8 @@ const openModal = (contents) => {
       id={rand}
       closeIcon={closeIcon}
       animation={animation}
+      contents={contents}
+      componentMode={componentMode}
     />,
     containerDomNode,
   );
