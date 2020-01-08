@@ -107,7 +107,6 @@ class Modal extends Component {
       open
     } = this.props;
     const { closed } = this.state;
-    console.log(animation)
 
     return (
       <div className="modal-component">

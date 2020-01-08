@@ -13,14 +13,25 @@ const openModal = (contents) => {
     closeIcon,
     containerId,
     animation,
+    modalId
   } = contents;
 
 
   const containerDomNode = document.createElement('div');
-  const rand = Math.floor(Math.random() * 100000 + 1);
+  let rand;
+  if (modalId) {
+    rand = modalId;
+  }
+  else {
+    rand = Math.floor(Math.random() * 100000 + 1);
+    }
   containerDomNode.setAttribute('id', `app-modal-${rand}`);
-  if (containerId) document.getElementById(containerId).appendChild(containerDomNode);
-  else document.body.appendChild(containerDomNode);
+  if (containerId) {
+    document.getElementById(containerId).appendChild(containerDomNode);
+  }
+  else {
+    document.body.appendChild(containerDomNode);
+  }
 
   const determineElement = (element) => {
     if (element) return typeof element === 'string' ? element : element();
@@ -50,4 +61,9 @@ const openModal = (contents) => {
   );
 };
 
-export { Modal, openModal };
+const closeModal = (id) => {
+  const element = document.querySelector(`#app-modal-${id}`);
+  element.parentNode.removeChild(element);
+}
+
+export { Modal, openModal, closeModal };
