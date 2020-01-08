@@ -48,6 +48,7 @@ class Example extends Component {
       closeIcon: { src: IconObject, alt: alt text for the icon},
       animation: { name: choose from 'bounce', 'fade-in' and 'zoom' animation, duration: 'animationDuration'},
       containerId: /* Id of the custom container over which you would like the modal to be mounted */
+      modalId: { /* make the modal take the id of your choosing */}
     });
   };
   render() {
