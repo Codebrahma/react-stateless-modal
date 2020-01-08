@@ -41,6 +41,7 @@ export default class App extends Component {
       footer: () => <button onClick={this.inner}>Inner</button>,
       closeIcon: { src: closeSrc, alt:'close' },
       classNames: {overlay: 'overlay', modal: 'mod', closeIcon: 'ico'},
+      modalId: 69420
     });
   };
 
@@ -49,7 +50,8 @@ export default class App extends Component {
       head: 'Yet another inner modal',
       body: 'A bogus body',
       closeOnEscape: false,
-      footer: () => <button onClick={closeModal}>close</button>
+      footer: () => <button onClick={closeModal}>close</button>,
+      modalId: 42069
     })
   }
 
@@ -68,7 +70,8 @@ export default class App extends Component {
         <h1>Modal demo</h1>
         <button onClick={this.openModal}>Open Modal via function mode</button>
         <button onClick={this.handleOpen}>Open Modal via Component mode</button>
-        <Modal head="head" onClose={this.handleClose} open={open} animation={{ name: "bounce", duration: "500ms" }}/>
+        {/* <Modal head="head" onClose={this.handleClose} open={open} animation={{ name: "bounce", duration: "500ms" }}/> */}
+        <Modal onClose={this.handleClose} open={open} head="Test"/>
       </div>
     );
   }

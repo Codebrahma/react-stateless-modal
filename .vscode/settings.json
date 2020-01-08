@@ -1,5 +1,6 @@
 {
     "editor.tabSize": 2,
     "prettier.singleQuote": true,
-    "prettier.jsxSingleQuote": true
+    "prettier.jsxSingleQuote": true,
+    "eslint.format.enable": true
 }
