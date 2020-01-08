@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import Modal from './modal';
+import modalStyles from '../styles/modalStyle.css'
 
 const openModal = (contents) => {
   const {
@@ -61,9 +62,13 @@ const openModal = (contents) => {
   );
 };
 
-const closeModal = (id) => {
-  const element = document.querySelector(`#app-modal-${id}`);
-  element.parentNode.removeChild(element);
+const closeModal = (...args) => {
+  console.log(args.length);
+  const lastInstance = Modal.instances[Modal.instances.length - 1].instance;
+  const lastId = lastInstance.props.id;
+  const className = `${document.getElementById(lastId).className} ${modalStyles['modal-overlay-close']}`
+  document.getElementById(lastId).className = className;
+  setTimeout(() => {lastInstance.unmountModal(lastId)}, 250);
 }
 
 export { Modal, openModal, closeModal };

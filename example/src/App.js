@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { openModal, Modal } from 'cb-react-modal';
+import { openModal, Modal, closeModal } from 'cb-react-modal';
 import 'cb-react-modal/dist/modalStyle.css';
 import './test.css';
 import closeSrc from './twitter.svg'
@@ -49,6 +49,7 @@ export default class App extends Component {
       head: 'Yet another inner modal',
       body: 'A bogus body',
       closeOnEscape: false,
+      footer: () => <button onClick={closeModal}>close</button>
     })
   }
 

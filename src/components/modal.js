@@ -24,14 +24,6 @@ class Modal extends Component {
     this.removeListener();
   }
 
-  removeListener = () => {
-    document.removeEventListener('keydown', this.handleKeyDown, false);
-  };
-
-  handleClose = () => {
-    this.closeOverlay();
-  };
-
   componentDidUpdate(prevProps) {
     const { open } = this.props;
     if (open !== prevProps.open) {
@@ -41,6 +33,16 @@ class Modal extends Component {
       })
     }
   }
+
+  removeListener = () => {
+    document.removeEventListener('keydown', this.handleKeyDown, false);
+  };
+
+  handleClose = () => {
+    this.closeOverlay();
+  };
+
+  
 
   closeOverlay = () => {
     const { componentMode, onClose } = this.props;
@@ -53,10 +55,6 @@ class Modal extends Component {
       const {id} = this.props;
       this.unmountModal(componentMode === undefined ? DEFAULT_ID : id);
     }, 250);
-    Modal.instances.pop();
-    if (Modal.instances.length === 0) {
-      this.removeListener();
-    }
   };
 
   unmountModal = id => {
@@ -66,6 +64,10 @@ class Modal extends Component {
     }
     const element = document.querySelector(`#app-modal-${id}`);
     element.parentNode.removeChild(element);
+    Modal.instances.pop();
+    if (Modal.instances.length === 0) {
+      this.removeListener();
+    }
   };
 
   handleKeyDown = e => {
@@ -167,9 +169,9 @@ class Modal extends Component {
 }
 
 Modal.defaultProps = {
-  head: '',
-  body: '',
-  footer: '',
+  head: null,
+  body: null,
+  footer: null,
   closeOnEscape: true,
   styles: null,
   classNames: { overlay: '', modal: '', closeIcon: '' },
