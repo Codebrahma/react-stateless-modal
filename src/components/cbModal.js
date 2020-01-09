@@ -154,7 +154,7 @@ CBModal.defaultProps = {
   footer: null,
   styles: null,
   classNames: { overlay: '', modal: '', closeIcon: '' },
-  closeIcon: null,
+  closeIcon: { src: crossIcon, alt: 'close' },
   animation: { name: 'fade-in', duration: '500ms' },
   id: null,
   componentMode: undefined,

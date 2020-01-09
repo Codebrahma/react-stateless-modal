@@ -2,7 +2,7 @@
 
 > A modal library that does not require state maintenance
 
-[![NPM](https://img.shields.io/npm/v/cb-modal-lib.svg)](https://www.npmjs.com/package/cb-modal-lib) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/cb-react-modal.svg)](https://www.npmjs.com/package/cb-react-modal) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
@@ -57,26 +57,49 @@ class Example extends Component {
 }
 ```
 
-The open method will mount the container for you.
+The `openModal` method will mount the container for you.
 
 You may optionally choose to use the component mode of the library by importing and mounting the `Modal` component. you may use all the properties used in the object passed to the `openModal` function. The example below shows how to create a simple modal using component mode. You additionally need to pass `open` and `onClose` prop. Refer docs for more information.
 
 ```jsx
 import React, { Component } from "react";
+import "./styles.css";
 import { Modal } from "cb-react-modal";
 
-const ModalDemo = () => {
-  return (
-    <Modal
-    head="A random Heading",
-    body="This is a body",
-    footer="A random footer"
-  />
-  )
+class App extends Component {
+  state = {
+    open: false
+  };
 
-  export default ModalDemo;
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  render() {
+    const { open } = this.state;
+    return (
+      <div>
+        <button onClick={this.handleOpen}>Open Modal via Component mode</button>
+        <Modal
+          head="head"
+          body="Inner Body  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+          hendrerit risus, sed porttitor quam  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+          hendrerit risus, sed porttitor quam  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          onClose={this.handleClose}
+          open={open}
+        />
+      </div>
+    );
+  }
 }
 
+export default App;
 ```
 
 ### Nested modal support
@@ -85,7 +108,7 @@ The library additionally gives you the flexibility of mounting a modal container
 
 ```jsx
 import React, { Component } from 'react';
-import openModal from 'cb-react-modal';
+import {openModal} from 'cb-react-modal';
 import 'cb-react-modal/dist/modalStyle.css';
 
 export default class App extends Component {
