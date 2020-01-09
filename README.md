@@ -12,7 +12,7 @@ npm install --save simple-react-modal
 
 ## documentation
 
-https://cb-react-modal-docs.netlify.com/
+Read the full Documentation [here](https://cb-react-modal-docs.netlify.com/)
 
 ## Advantages
 
