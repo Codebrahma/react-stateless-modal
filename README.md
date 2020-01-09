@@ -1,13 +1,13 @@
-# cb-react-modal
+# simple-react-modal
 
 > A modal library that does not require state maintenance
 
-[![NPM](https://img.shields.io/npm/v/cb-react-modal.svg)](https://www.npmjs.com/package/cb-react-modal) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/simple-react-modal.svg)](https://www.npmjs.com/package/simple-react-modal) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save cb-react-modal
+npm install --save simple-react-modal
 ```
 
 ## documentation
@@ -26,7 +26,7 @@ The modal libraries in existence such as `react-responsive-modal` requires users
 
 ```jsx
 import React, { Component } from "react";
-import { openModal } from "cb-react-modal";
+import { openModal } from "simple-react-modal";
 class Example extends Component {
   openModal = () => {
     openModal({
@@ -60,7 +60,7 @@ You may optionally choose to use the component mode of the library by importing 
 ```jsx
 import React, { Component } from "react";
 import "./styles.css";
-import { Modal } from "cb-react-modal";
+import { Modal } from "simple-react-modal";
 
 class App extends Component {
   state = {
@@ -104,8 +104,7 @@ The library additionally gives you the flexibility of mounting a modal container
 
 ```jsx
 import React, { Component } from 'react';
-import { openModal } from 'cb-react-modal';
-import 'cb-react-modal/dist/modalStyle.css';
+import { openModal } from 'simple-react-modal';
 
 export default class App extends Component {
   openModal = () => {
