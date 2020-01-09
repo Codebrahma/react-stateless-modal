@@ -10,13 +10,9 @@
 npm install --save cb-react-modal
 ```
 
-## Live Preview
-
-https://practical-mahavira-784c71.netlify.com/
-
 ## documentation
 
-https://hardcore-bardeen-53f8f1.netlify.com/
+https://cb-react-modal-docs.netlify.com/
 
 ## Advantages
 
