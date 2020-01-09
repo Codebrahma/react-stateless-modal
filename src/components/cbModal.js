@@ -30,9 +30,8 @@ class CBModal extends Component {
       onClose();
     }
     setTimeout(() => {
-      const DEFAULT_ID = 42069;
       const { id } = this.props;
-      this.unmountModal(componentMode === undefined ? DEFAULT_ID : id);
+      this.unmountModal(id);
     }, 250);
   };
 
@@ -82,7 +81,6 @@ class CBModal extends Component {
       classNames,
       animation,
       closeIcon,
-      componentMode,
     } = this.props;
     const { closed } = this.state;
 
@@ -96,7 +94,7 @@ class CBModal extends Component {
                 }`
                 : this.classNameDeterminer('overlay')
             }
-          id={componentMode === undefined ? `app-modal-${42069}` : id}
+          id={id}
           onClick={this.handleOverlayClick}
         >
           <div

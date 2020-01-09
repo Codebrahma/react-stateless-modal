@@ -71,7 +71,7 @@ export default class App extends Component {
         <button onClick={this.openModal}>Open Modal via function mode</button>
         <button onClick={this.handleOpen}>Open Modal via Component mode</button>
         {/* <Modal head="head" onClose={this.handleClose} open={open} animation={{ name: "bounce", duration: "500ms" }}/> */}
-        <Modal onClose={this.handleClose} open={open} head="Test"/>
+        <Modal onClose={this.handleClose} open={open} head="Test" body={() => <button onClick={closeModal}>close</button>}/>
       </div>
     );
   }
