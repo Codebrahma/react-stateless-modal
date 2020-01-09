@@ -108,7 +108,7 @@ The library additionally gives you the flexibility of mounting a modal container
 
 ```jsx
 import React, { Component } from 'react';
-import {openModal} from 'cb-react-modal';
+import { openModal } from 'cb-react-modal';
 import 'cb-react-modal/dist/modalStyle.css';
 
 export default class App extends Component {
