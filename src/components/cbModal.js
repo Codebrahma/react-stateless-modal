@@ -64,6 +64,8 @@ class CBModal extends Component {
   };
 
   handleOverlayClick = (e) => {
+    const { disableOverlayClick } = this.props;
+    if (disableOverlayClick) return;
     const { id } = e.target;
     if (id) {
       this.closeOverlay();
@@ -159,6 +161,7 @@ CBModal.defaultProps = {
   id: null,
   componentMode: undefined,
   onClose: null,
+  disableOverlayClick: false,
 };
 
 CBModal.propTypes = {
@@ -182,6 +185,7 @@ CBModal.propTypes = {
   }),
   componentMode: PropTypes.bool,
   onClose: PropTypes.func,
+  disableOverlayClick: PropTypes.bool,
 };
 
 

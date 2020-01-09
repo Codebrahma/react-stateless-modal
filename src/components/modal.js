@@ -17,6 +17,7 @@ const renderModal = (props) => {
     modalId,
     containerId,
     onClose,
+    disableOverlayClick,
   } = props;
   const { containerDomNode, rand } = generateContainer(modalId, containerId);
   const determineElement = (element) => {
@@ -36,15 +37,16 @@ const renderModal = (props) => {
       animation={animation}
       componentMode={undefined}
       onClose={onClose}
+      disableOverlayClick={disableOverlayClick}
     />,
     containerDomNode,
   );
 };
 
 
-const Modal = ({ open, ...otherprops }) => (
+const Modal = ({ open, ...rest }) => (
   // eslint-disable-next-line react/jsx-fragments
-  open ? <React.Fragment>{renderModal(otherprops)}</React.Fragment> : null
+  open ? <React.Fragment>{renderModal(rest)}</React.Fragment> : null
 );
 
 export default Modal;

@@ -16,6 +16,7 @@ const openModal = (contents) => {
     containerId,
     animation,
     modalId,
+    disableOverlayClick,
   } = contents;
 
   const { containerDomNode, rand } = generateContainer(modalId, containerId);
@@ -40,6 +41,7 @@ const openModal = (contents) => {
       closeIcon={closeIcon}
       animation={animation}
       componentMode={componentMode}
+      disableOverlayClick={disableOverlayClick}
     />,
     containerDomNode,
   );
