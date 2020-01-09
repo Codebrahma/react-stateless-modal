@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { openModal, Modal, closeModal } from 'react-simple-modal';
+import { openModal, Modal, closeModal } from 'react-stateless-modal';
 import './test.css';
 import closeSrc from './twitter.svg'
 

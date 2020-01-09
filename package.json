@@ -1,10 +1,10 @@
 {
-  "name": "react-simple-modal",
+  "name": "react-stateless-modal",
   "version": "1.1.3",
   "description": "A modal library that does not require state maintance",
   "author": "Sigkill32",
   "license": "MIT",
-  "repository": "Sigkill32/react-simple-modal",
+  "repository": "Sigkill32/react-stateless-modal",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
