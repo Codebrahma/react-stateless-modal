@@ -37,10 +37,12 @@ class CBModal extends Component {
 
   unmountModal = (id) => {
     const element = document.querySelector(`#app-modal-${id}`);
-    element.parentNode.removeChild(element);
-    CBModal.instances.pop();
-    if (CBModal.instances.length === 0) {
-      document.removeEventListener('keydown', this.handleKeyDown, false);
+    if (element) {
+      element.parentNode.removeChild(element);
+      CBModal.instances.pop();
+      if (CBModal.instances.length === 0) {
+        document.removeEventListener('keydown', this.handleKeyDown, false);
+      }
     }
   };
 
