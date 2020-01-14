@@ -5,7 +5,7 @@ import closeSrc from './twitter.svg';
 import { Route, Link } from 'react-router-dom';
 import Landing from './landing';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     open: false
   };
@@ -75,7 +75,9 @@ export default class App extends Component {
     const { open } = this.state;
     return (
       <div>
-        <Route path="/landing" component={Landing} />
+        <div>
+          <Route path="/landing" component={Landing} />
+        </div>
         <h1>Modal demo</h1>
         <button onClick={this.openModal}>Open Modal via function mode</button>
         <button onClick={this.handleOpen}>Open Modal via Component mode</button>
@@ -92,3 +94,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default App;

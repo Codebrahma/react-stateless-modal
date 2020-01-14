@@ -19,11 +19,13 @@ const renderModal = (props) => {
     onClose,
     disableOverlayClick,
   } = props;
+
   const { containerDomNode, rand } = generateContainer(modalId, containerId);
   const determineElement = (element) => {
     if (element) return typeof element === 'string' ? element : element();
     return '';
   };
+
   ReactDOM.render(
     <CBModal
       head={determineElement(head)}
