@@ -77,4 +77,4 @@ const closeModal = (...args) => {
   }
 };
 
-export { CBModal, openModal, closeModal };
+export { CBModal, closeModal };
